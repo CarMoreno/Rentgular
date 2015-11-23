@@ -1,0 +1,183 @@
+var app= angular.module("forms",[]);
+
+
+app.controller("formController",function ($scope){
+
+ $scope.ahorro = true;
+ $scope.corriente = true;
+ $scope.coop = true;
+ $scope.otros = true;
+
+        $scope.ShowForm = function(opcion) {
+        
+        switch (opcion)
+         {
+
+        	case "ahorros":
+
+        	    if ($scope.ahorro==true)
+        	    {
+                  
+        	 	 $scope.ahorro=false;
+        	
+        	    }
+        	    else {$scope.ahorro=true;}
+
+        	    break;
+
+        	 	case "corriente":
+
+ 				if ($scope.corriente==true)
+ 				{
+        	 		$scope.corriente=false;
+        	 	}
+        			
+        			else {$scope.corriente=true;}
+ 					break;	
+
+ 			case "coop":
+
+        	    if ($scope.coop==true)
+        	    {
+        	 	 $scope.coop=false;
+        	 	
+        	    }
+        	    else {$scope.coop=true;}
+
+        	    break;
+        	    		
+        	case "otros":
+
+        	    if ($scope.otros==true)
+        	    {
+        	 	 $scope.otros=false;
+        	 	
+        	    }
+        	    else {$scope.otros=true;}
+
+        	    break;
+
+        }        	
+} 
+
+
+$scope.datos = [];
+
+
+
+ $scope.agregar = function(cuenta)
+  {    
+
+        switch (cuenta)
+
+        {
+
+          case "ahorro":
+
+                if(  $scope.descripcion == '' || $scope.valor == ''  )
+                 {
+                        alert("Campos Vacios por Favor Registrarlos");
+                 }
+                    else
+                    {
+                  
+                        // Agregamos los Datos
+                        $scope.datos.push({cuenta:"Cta Ahorros",descripcion: $scope.descripcion,valor:$scope.valor})
+                              // Limpiamos los Input
+               
+              
+                    }
+
+                        $scope.descripcion = '';
+                        $scope.valor = '';
+                  
+                        break;
+
+
+             case "corriente":
+
+                if(  $scope.descripcion1 == '' || $scope.valor1 == ''  )
+                 {
+                        alert("Campos Vacios por Favor Registrarlos");
+                 }
+                    else
+                    {
+                  
+                        // Agregamos los Datos
+                        $scope.datos.push({cuenta:"Cta Corriente",descripcion: $scope.descripcion1,valor:$scope.valor1})
+                              // Limpiamos los Input
+                              
+                       
+                    }
+
+                        $scope.descripcion1 = '';
+                        $scope.valor1 = '';
+          
+                        break;
+
+
+
+             case "coop":
+
+                if(  $scope.descripcion2 == '' || $scope.valor2 == ''  )
+                 {
+                        alert("Campos Vacios por Favor Registrarlos");
+                 }
+                    else
+                    {
+                  
+                        // Agregamos los Datos
+                        $scope.datos.push({cuenta:"Cooperativas",descripcion: $scope.descripcion2,valor:$scope.valor2})
+                              // Limpiamos los Input
+                            $scope.total=  $scope.total + $scope.valor2;
+                
+                    }
+
+                        $scope.descripcion2 = '';
+                        $scope.valor2 = '';
+                  
+                        break;
+
+
+
+            case "otros":
+
+                if(  $scope.descripcion3 == '' || $scope.valor3 == ''  )
+                 {
+                        alert("Campos Vacios por Favor Registrarlos");
+                 }
+                    else
+                    {
+                  
+                        // Agregamos los Datos
+                        $scope.datos.push({cuenta:"Otros",descripcion: $scope.descripcion3,valor:$scope.valor3})
+                              // Limpiamos los Input
+                            $scope.total+= $scope.valor3;
+                
+                    }
+
+                        $scope.descripcion3 = '';
+                        $scope.valor3 = '';
+                  
+                        break;                                   
+        }
+
+         }   
+        
+
+
+
+
+
+
+});
+
+
+
+
+app.controller("tabController",function ($scope){   
+
+
+
+
+});
