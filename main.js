@@ -49,6 +49,38 @@ router.controller('loginCtrl', function($scope, $firebaseSimpleLogin, $location)
 			});
 
 	}
+
+	//funcion para autenticacion federada
+	$scope.auth_federada = function(red_social) {
+				
+		firebase_object.authWithOAuthPopup(red_social, function (error, authData) {
+		// body...
+			if (error) {
+				console.log("Error al autentificar con "+red_social)
+			}else{
+				console.log("Exito al autentificar con "+red_social+" ",authData);
+			}
+		})
+		
+	}
+
+	// // Funcion para logear con Twitter
+	// $scope.login_twitter = function() {
+	// 	firebase_object.authWithOAuthPopup("twitter", function (error, authData) {
+	// 		// body...
+	// 		if (error) {
+	// 			console.log("Error al autentificar con Twitter")
+	// 		}else{
+	// 			console.log("Exito al autentificar con Twitter", authData);
+	// 		}
+	// 	})
+	// }
+	// }
+
+	// // Funcion para logear con Google
+	// $scope.login_google = function() {
+
+	// }
 });
 
 //2. Controlador de registro de usuarios
