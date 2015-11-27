@@ -58,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="starter.html" class="logo">
+        <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>D</b>EC</span>
           <!-- logo for regular state and mobile devices -->
@@ -265,7 +265,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="text-info content-header">
           <h1>
-           Ingresa el valor de tus ahorros
+          Pago de salarios
             <small>Optional description</small>
           </h1>
           <ol class="breadcrumb">
@@ -292,7 +292,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <table class="data-table col-xs-11 col-md-offset-1 data-table-container">
                       <thead>
                           <tr>
-                              <th>Descripción</th>
+                              <th>Servicios</th>
                               <th class="text-right">Saldo</th>
                               <th colspan="2">&nbsp;</th>
                           </tr>
@@ -300,12 +300,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <tbody>
                        <!--  Lo que debe crear el JS -->
                           
-                          <tr ng-repeat="dato in datos">
+                          <tr ng-repeat="dato in pagos">
                             <td><div> {{ dato.descripcion }} </div></td>
                             <td class="text-right"><div> {{ dato.valor }} </div></td>
-                            <td><div> {{ dato.cuenta }} </div></td>
                             <td class="text-right">
-                            <div ><span ng-click="remove(dato)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
+                            <div ><span ng-click="removepa(dato)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
 
 
                           </td>
@@ -317,7 +316,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           <tr>
                               <td>Total</td>
                               <td class="text-right">
-                                  $<span class="total-data-table" data-total="value">{{total}}</span>
+                                  $<span class="total-data-table" data-total="value">{{totalpa}}</span>
                               </td>
                               <td colspan="2">&nbsp;</td>
                           </tr>
@@ -327,94 +326,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <!-- /TABLAS -->
              <!--  CHECKBOX-->
-                <div   class="col-xs-12 nopadding-sides form-checkbox">
-        <div  class="col-xs-12 nopadding-sides" >
-            <div  class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                <label  >
-                    <input  ng-click= "ShowForm('ahorros')" type="checkbox" id="chkAh"  name="CtaAhorros" >&nbsp;<span>Cta ahorros</span>
-                </label>
-            </div>                      
-            <div class="col-xs-12 col-sm-4" ng-hide="ahorro" > 
-                <input  type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcion" ng-model="descripcion" 
-                 ng-class="{ error:formBien.$dirty && formBien.descripcion.$error.required }" required>
-                <!-- <span class="text-danger" ng-show="!formBien.$pristine && formBien.descripcion.$error.required">Descripcion requerida.</span> -->
+           <div   class="col-xs-12 nopadding-sides form-checkbox">
+            <div  class="col-xs-12 col-md-offset-1 nopadding-sides" >
+                                
+              <div class="col-xs-12 col-sm-4" > 
+                  <div class="col-xs-12">
+                      <span>Pago de salarios</span>
+                  </div>
+                  <input  type="text" placeholder="Servicios" class="form-control form-checkbox-description" name="paga" ng-model="paga" 
+                   ng-class="{ error:formBien.$dirty && formBien.paga.$error.required }" required>
                 
-      
-            </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="ahorro">
-                <input  type="number" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="valor" ng-model="valor"  ng-class="{ error:formBien.$dirty && formBien.valor.$error.required }" required>
-                <!-- <span class="text-danger"ng-show="!formBien.$pristine && formBien.valor.$error.required">Valor requerido.</span> -->
-
-            </div>
-
-              <div class="col-xs-12 text-right col-sm-2" ng-hide="ahorro">
-                  <button class="btn btn-success ng-isolate-scope" type="submit"
-                   ng-disabled="formBien.descripcion.$error.required; formBien.valor.$error.required" ng-click="agregar('ahorro')" >Adicionar</button>
               </div>
+              <div class="col-xs-12 col-sm-3" >
+                  <div class="col-xs-12">
+                      <span>Costo</span>
+                  </div>
+                  <input  type="number" min="1" placeholder="Costo" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="costopa" ng-model="costopa"  ng-class="{ error:formBien.$dirty && formBien.costopa.$error.required }" required>
+                 
+              </div>
+
+                <div class="col-xs-12 text-right col-sm-2 btnmargen" >
+
+                    <button class="btn btn-success ng-isolate-scope" type="submit"
+                     ng-disabled="formBien.paga.$error.required; formBien.costopa.$error.required" ng-click="agregar('pago')" >Adicionar</button>
+                </div>
            
             
+         </div>
         </div>
 
-         <div class="col-xs-12 nopadding-sides"  >
-            <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                <label>
-                    <input ng-click= "ShowForm('corriente')" type="checkbox" id="chkCor" >&nbsp;<span>Cta corriente</span>
-                </label>
-            </div> 
-            <div class="col-xs-12 col-sm-4"  ng-hide="corriente">
-                <input type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcion1" ng-model="descripcion1"  ng-class="{ error:formBien.$dirty && formBien.descripcion1.$error.required }"  required>
-            </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="corriente">
-                <input type="number" name="valor1" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" ng-model="valor1" style="text-align: right;" ng-class="{ error:formBien.$dirty && formBien.valor1.$error.required }" required>
-            </div>
-            <div class="col-xs-12 text-right col-sm-2" ng-hide="corriente">
-                <button class="btn btn-success ng-isolate-scope" type="submit"
-                ng-disabled="formBien.descripcion1.$error.required; formBien.valor1.$error.required" ng-click="agregar('corriente')">Adicionar</button>
-            </div>
-            
-        </div>
 
-         <div class="col-xs-12 nopadding-sides"  >
-            <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                <label>
-                    <input ng-click= "ShowForm('coop')" type="checkbox" id="chkcoop" >&nbsp;<span>Cooperativas</span>
-                </label>
-            </div>
-            <div class="col-xs-12 col-sm-4"  ng-hide="coop">
-                <input type="text" placeholder="Descripción" name="descripcion2" ng-model="descripcion2" class="form-control form-checkbox-description"
-                ng-class="{ error:formBien.$dirty && formBien.descripcion2.$error.required }"  required>
-            </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="coop">
-                <input type="text" placeholder="Valor" name="valor2" ng-model="valor2" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" ng-class="{ error:formBien.$dirty && formBien.valor2.$error.required }" required>
-            </div>
-            <div class="col-xs-12 text-right col-sm-2" ng-hide="coop" ng-click="agregar('coop')">
-                <button class="btn btn-success ng-isolate-scope"
-                ng-disabled="formBien.descripcion2.$error.required; formBien.valor2.$error.required" >Adicionar</button>
-            </div>
-            
-        </div>
-
-         <div class="col-xs-12 nopadding-sides" >
-            <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                <label>
-                    <input ng-click= "ShowForm('otros')" id="chkotro" type="checkbox" >&nbsp;<span>Otros</span>
-                </label>
-            </div>
-            <div class="col-xs-12 col-sm-4"  ng-hide="otros">
-                <input type="text" placeholder="Descripción" name="descripcion3" ng-model="descripcion3" class="form-control form-checkbox-description"
-                 ng-class="{ error:formBien.$dirty && formBien.descripcion3.$error.required }"  required>
-            </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="otros">
-                <input type="text" placeholder="Valor" name="valor3" ng-model="valor3" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" ng-class="{ error:formBien.$dirty && formBien.valor3.$error.required }"  required>
-            </div>
-            <div class="col-xs-12 text-right col-sm-2" ng-hide="otros">
-                <button class="btn btn-success ng-isolate-scope" ng-click="agregar('otros')"
-                 ng-disabled="formBien.descripcion3.$error.required; formBien.valor3.$error.required">Adicionar</button>
-            </div>
-            
-        </div>
-       
-        </div>
+    
    
              <!-- /CHECKBOX -->
             </form>
