@@ -7,15 +7,19 @@ router.config(function($routeProvider) {
 
 	$routeProvider
 		.when('/', {
-			templateUrl	: 'login.html',
+			templateUrl	: 'views/login.html',
 			controller 	: 'loginCtrl'
 		})
 		.when('/registro', {
-			templateUrl : 'registro.html',
+			templateUrl : 'views/registro.html',
 			controller 	: 'registroCtrl'
 		})
+		// .when('/ahorros', {
+		// 	templateUrl : 'views/.html',
+		// 	controller 	: 'dashboardCtrl'
+		// })
 		.when('/dashboard', {
-			templateUrl : 'acciones.html', // aca debe de redirigir al dashboard
+			templateUrl : 'views/acciones.html', // aca debe de redirigir al dashboard
 			controller  : 'dashboardCtrl'
 		})
 		.otherwise({
@@ -41,6 +45,7 @@ router.controller('loginCtrl', function($scope, $firebaseAuth, $location) {
 			password : password
 		}).then(function(datos_autenticacion) {
 			console.log("EXITO e el logueo",datos_autenticacion)
+			$location.path("/dashboard")
 		}).catch(function(error) {
 			console.log("ERROR en el logue", error)
 		});

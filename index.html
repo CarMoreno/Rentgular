@@ -2,9 +2,10 @@
 <html lang="en" ng-app='routerApp'>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="bootstrap/bootstrap-social.css">
-	<!-- Font Awesome -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -14,20 +15,37 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
+    <!--
+  BODY TAG OPTIONS:
+  =================
+  Clases para cambiar el tema de AdminLTE
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 	<title>Rentas App</title>
 </head>
-<body ng-controller='loginCtrl'>
+<body ng-controller='loginCtrl' class="hold-transition skin-blue sidebar-mini">
 	<!-- aca se renderizan las vistas -->
-	<div class="main">
-		<div ng-view></div>
-	</div>
+	<div ng-view></div>
+
 	<script src="plugins/lib/jQuery-2.1.4.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 	<script src="plugins/angular/angular-route.min.js"></script>
     <script src="plugins/angular/angular-sanitize.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-
 	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 	<script src="plugins/angular/angularfire.min.js"></script>
 	<script src="dist/js/app.min.js"></script>
