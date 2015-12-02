@@ -25,12 +25,40 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="" method="post" role="form" style="display: block;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="" ng-model='user.email'>
+								<form id="login-form" name="formLogin" method="post" role="form" style="display: block;">
+									<div class="form-group" ng-class="{ 'has-error' : formLogin.username.$invalid && !formLogin.username.$pristine }">
+										<input type="email" name="username" id="username"
+										 class="form-control" 
+										 placeholder="Email" 
+										 ng-model='user.email' 
+										 ng-required="true"
+										 required	
+										 >
+										 <span class="help-block" ng-show="formLogin.username.$error.email && !formLogin.username.$pristine"><!--Si el campo es invalido y 
+										 el usario ya se ha interactuado con el, entonces-->
+										 	Digite un email válido
+										 </span>
+										 <span class="help-block" ng-show="formLogin.username.$error.required"><!--Si el campo es invalido y 
+										 el usario ya se ha interactuado con el, entonces-->
+										 	Este campo es requerido
+										 </span>
 									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña" ng-model='user.password'>
+									<div class="form-group" ng-class="{ 'has-error' : formLogin.password.$invalid && !formLogin.password.$pristine	
+										 }">
+										<input type="password" name="password" id="password"
+										 class="form-control" 
+										 placeholder="Contraseña"
+										 ng-model='user.password' 
+										 ng-required="true"
+										 ng-minlength="5"
+										 required
+										 >
+										 <span class="help-block" ng-show="formLogin.password.$error.minlength && !formLogin.password.$pristine">
+										 Mínimo 5 caracteres
+										 </span>
+										 <span class="help-block" ng-show="formLogin.password.$error.required">
+										 Este campo es requerido
+										 </span>
 									</div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -39,7 +67,13 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Iniciar" ng-click='login($event)'>
+												<input type="submit"
+												 name="login-submit" 
+												 id="login-submit"
+												 class="form-control btn btn-login" 
+												 value="Iniciar" 
+												 ng-click='login($event)'
+												 ng-disabled="!formLogin.$valid">
 											</div>
 										</div>
 									</div>
