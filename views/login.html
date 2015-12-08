@@ -62,9 +62,8 @@
 										 Este campo es requerido
 										 </span>
 									</div>
-									<div class="form-group text-center">
-										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> Recuerdame</label>
+									<div class=" text-center">
+										<p class="text-danger">{{mensaje}}</p>
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -75,15 +74,19 @@
 												 class="form-control btn btn-login" 
 												 value="Iniciar" 
 												 ng-click='login($event)'
-												 ng-disabled="!formLogin.$valid">
+												 ng-disabled="!formLogin.$valid"
+												 >
 											</div>
 										</div>
-									</div>
+									</div><!-- boton -->
 									<div class="form-group">
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="" tabindex="5" class="forgot-password">¿Olvidaste la contraseña?</a>
+													<a href="" tabindex="5"
+													class="forgot-password"
+													data-toggle="modal"
+												 	data-target="#informacion">¿Olvidaste la contraseña?</a>
 												</div>
 											</div>
 										</div>
@@ -121,6 +124,52 @@
 							</div>	
 						</div>
 					</div>
+					<!--Modal-->
+					<div class="modal fade" tabindex="-1" role="dialog" id="informacion">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title">Solicitud de recuperación de contraseña</h4>
+					      </div>
+					      <div class="modal-body">
+					        <p class="text-muted">Si has olvidado tu contraseña, por favor ingresa mas abajo la
+					        direccion de correo electrónico con la cual te has registrado, te
+					        enviaremos un link de recuperación.</p>
+					        <form name="formOlvido">
+					          <div class="form-group" ng-class="{ 'has-error' : formOlvido.tuemail.$invalid && !formOlvido.tuemail.$pristine }">
+					            <input type="email" name="tuemail" class="form-control" id="correo"
+					            placeholder="Email"
+					            ng-required="true"
+					            ng-model = "emailOlvido"
+								required
+					            >
+						        <span class="help-block" ng-show="formOlvido.tuemail.$error.email && !formOlvido.tuemail.$pristine"><!--Si el campo es invalido y el usario ya se ha interactuado con el, entonces-->
+									Digite un email válido
+								</span>
+					          </div>
+					          <div class="form-group">
+									<div class="row">
+										<div class="col-sm-6 col-sm-offset-3">
+											<input type="submit"
+											 name="login-submit" 
+											 id="login-submit"
+											 class="form-control btn btn-login" 
+											 value="Enviar" 
+											 ng-click='recuperarPassword()'
+											 ng-disabled="!formOlvido.$valid"
+											 >
+										</div>
+									</div>
+								</div>
+								<div class=" text-center">
+									<p class="text-danger">{{mensaje}}</p>
+								</div>	
+					        </form>
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
 				</div>
 			</div>
 		</div>

@@ -18,7 +18,7 @@ rentgular.config(function($routeProvider) {
 		// 	paginaActiva: '#ahorros'
 		// })
 		.when('/dashboard', {
-			templateUrl : 'views/acciones.html', // aca deberá de redirigir al dashboard
+			templateUrl : 'views/dashboard.html', // aca deberá de redirigir al dashboard
 			controller  : 'dashboardCtrl',
 			paginaActiva  : '#dashboard' //Url activa en ese momento, cada ruta debe de tener esta clave
 		})
