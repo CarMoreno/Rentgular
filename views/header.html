@@ -60,7 +60,52 @@
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#/" class="btn btn-default btn-flat" ng-click="logOut">Sign out</a>
+                  <a href="{{ruta.current.paginaActiva}}" class="btn btn-default btn-flat" ng-click="logOut">Sign out</a>
+                </div>
+                <div class="pull-left">
+                  <form action="" name="formCambio">
+                    <div class="form-group" ng-class="{ 'has-error' : formCambio.password.$invalid && !formCambio.password.$pristine  
+                     }">
+                    <input type="password" name="password" id="password"
+                     class="form-control" 
+                     placeholder="Contraseña Actual"
+                     ng-model='cambio.password'
+                     ng-minlength="5"
+                     required
+                     >
+                     <span class="help-block" ng-show="formCambio.password.$error.minlength && !formCambio.password.$pristine">
+                     Mínimo 5 caracteres
+                     </span>
+                  </div>
+                  <div class="form-group" ng-class="{ 'has-error' : formCambio.password2.$invalid && !formCambio.password2.$pristine  
+                     }">
+                    <input type="password" name="password2" id="password"
+                     class="form-control" 
+                     placeholder="Nueva contraseña"
+                     ng-model='cambio.password2'
+                     ng-minlength="5"
+                     required
+                     >
+                     <span class="help-block" ng-show="formCambio.password2.$error.minlength && !formCambio.password2.$pristine">
+                     Mínimo 5 caracteres
+                     </span>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit"
+                         name="cambioPassword" 
+                         id="cambioPassword"
+                         class="btn btn-default btn-flat" 
+                         value="Cambiar" 
+                         ng-click='cambiarPassword'
+                         ng-disabled="!formCambio.$valid"
+                         >
+                      </div>
+                    </div>
+                  </div><!-- boton -->
+                  <span class="text-danger" id="error_cambio"></span>
+                  </form>
                 </div>
               </li>
             </ul>
