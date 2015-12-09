@@ -9,7 +9,7 @@ rentgular.controller('registroCtrl',['servicioAuth', '$scope', '$firebaseAuth',
 		//Funcion para crear un usuario
 		$scope.crearUsuario = function(e) {
 			e.preventDefault() // Para que a pagina no se refresque cuando estemos en la gestion de registar un nuevo usuario, pueden generarse errores. 
-			servicioAuth.$createUser({
+			servicioAuth.ref().$createUser({
 				email: $scope.user_register.email,
 				password: $scope.user_register.password
 			}).then(function(data_users) {

@@ -6,7 +6,29 @@
 var rentgular = angular.module('rentgularApp')
 rentgular.factory('servicioAuth', ['$firebaseAuth',
 	function($firebaseAuth) {
-    	var ref = new Firebase("https://rentas.firebaseIO.com")
-    	return $firebaseAuth(ref)
-  	}
+		var ref = new Firebase("https://rentas.firebaseIO.com")
+		var authObj = $firebaseAuth(ref)
+		var obj = {
+			ref : function() {
+				return authObj
+			},
+			change_password: function(e, firebaseRef, tuemail, passVieja, passNueva) {
+				e.preventDefault()//Para que la pagina no recargue cuando ejecutemos la accion
+				console.log('Hola')
+				var mensaje = null
+				firebaseRef.$changePassword({
+					email: tuemail,
+					oldPassword: passVieja,
+					newPassword: passNueva
+				}).then(function() {
+					document.getElementById('exitoCambio').innerHTML = 'Exito, ha cambiado su contraseña'
+					//return mensaje
+				}).catch(function(error) {
+					document.getElementById('exitoCambio').innerHTML = ''
+					document.getElementById('errorCambio').innerHTML = 'Error, vuelva a intentarlo'
+				})
+			}
+		}
+		return obj
+	}
 ]);

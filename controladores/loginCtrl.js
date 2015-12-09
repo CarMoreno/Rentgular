@@ -12,7 +12,7 @@ rentgular.controller('loginCtrl', ['servicioAuth', '$scope', '$firebaseAuth','$l
 			e.preventDefault()//Para que la pagina no recargue cuando ejecutemos la accion
 			var username = $scope.user.email
 			var password = $scope.user.password
-			servicioAuth.$authWithPassword({
+			servicioAuth.ref().$authWithPassword({
 				email : username,
 				password : password
 			}).then(function(datos_autenticacion) {
@@ -28,19 +28,21 @@ rentgular.controller('loginCtrl', ['servicioAuth', '$scope', '$firebaseAuth','$l
 		//funcion para autenticacion federada
 		$scope.auth_federada = function(red_social) {
 					
-			servicioAuth.$authWithOAuthPopup(red_social)
+			servicioAuth.ref().$authWithOAuthPopup(red_social)
 				.then(function(datos_autenticacion) {
 					console.log("EXITO AL AUTENTICAR CON "+red_social+"",datos_autenticacion)
+					$location.path('/dashboard')
 				})
 				.catch(function(error) {
-					console.log("ERROR AL AUTENTICAR CON "+red_social+"",error)
+					//console.log("ERROR AL AUTENTICAR CON "+red_social+"",error)
+					$scope.mensaje = "Error al ingresar con "+red_social
 				})
 			
 		}
 
 		// Funcion para recuperar contraseña
 		$scope.recuperarPassword = function() {
-			servicioAuth.$resetPassword({
+			servicioAuth.ref().$resetPassword({
 				email : $scope.emailOlvido
 			}).then(
 				$scope.mensaje = "Revisa tu correo electrónico, te hemos enviado un enlace de recuperación"

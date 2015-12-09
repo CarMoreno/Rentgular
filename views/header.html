@@ -60,10 +60,10 @@
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="{{ruta.current.paginaActiva}}" class="btn btn-default btn-flat" ng-click="logOut">Sign out</a>
+                  <a href="#/" class="btn btn-default btn-flat" ng-click="ref.$unauth()">Sign out</a>
                 </div>
                 <div class="pull-left">
-                  <form action="" name="formCambio">
+                  <form action="" method="POST" name="formCambio">
                     <div class="form-group" ng-class="{ 'has-error' : formCambio.password.$invalid && !formCambio.password.$pristine  
                      }">
                     <input type="password" name="password" id="password"
@@ -90,6 +90,8 @@
                      Mínimo 5 caracteres
                      </span>
                   </div>
+                  <span class="text-danger" id="errorCambio"></span>
+                  <span class="text-success" id="exitoCambio"></span>
                   <div class="form-group">
                     <div class="row">
                       <div class="col-sm-6 col-sm-offset-3">
@@ -98,13 +100,12 @@
                          id="cambioPassword"
                          class="btn btn-default btn-flat" 
                          value="Cambiar" 
-                         ng-click='cambiarPassword'
+                         ng-click='auth.change_password($event, ref, datosUserLog.password.email, cambio.password, cambio.password2)'
                          ng-disabled="!formCambio.$valid"
                          >
                       </div>
                     </div>
                   </div><!-- boton -->
-                  <span class="text-danger" id="error_cambio"></span>
                   </form>
                 </div>
               </li>
