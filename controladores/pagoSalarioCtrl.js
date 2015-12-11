@@ -9,8 +9,8 @@ rentgular.controller('pagoSalarioCtrl', ['servicioAuth','$scope', '$route', '$fi
 		$scope.ref = servicioAuth.ref() // objeto $firebaseAuth
 		$scope.datosUserLog = servicioAuth.ref().$getAuth() //datos del usuario logueado
 		//------------------------------------------------------------------------------
-		var egresosRef = new Firebase('https://rentas.firebaseIO.com/egresos')
-		$scope.arrayEgresos = $firebaseArray(egresosRef)
+		var pagosSalariosRef = new Firebase('https://rentas.firebaseIO.com/egresos/pagos_salarios')
+		$scope.arrayEgresos = $firebaseArray(pagosSalariosRef)
 		$scope.pagoDatos = {}
 		$scope.total = 0
 		

@@ -32,9 +32,9 @@
                                 <tbody>
                                  <!--  Lo que debe crear el JS -->
                                     
-                                    <tr ng-repeat="dato in compras">
-                                      <td><div> {{ dato.descripcion }} </div></td>
-                                      <td class="text-right"><div> {{ dato.valor }} </div></td>
+                                    <tr ng-repeat="compra in arrayCompras">
+                                      <td><div> {{ compra.articulo }} </div></td>
+                                      <td class="text-right"><div> {{ compra.valor }} </div></td>
                                       <td class="text-right">
                                       <div ><span ng-click="removeco(dato)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
 
@@ -48,7 +48,7 @@
                                     <tr>
                                         <td>Total</td>
                                         <td class="text-right">
-                                            $<span class="total-data-table" data-total="value">{{totalco}}</span>
+                                            $<span class="total-data-table" data-total="value">{{totalCompras}}</span>
                                         </td>
                                         <td colspan="2">&nbsp;</td>
                                     </tr>
@@ -65,7 +65,7 @@
                             <div class="col-xs-12">
                                 <span>Articulos</span>
                             </div>
-                            <input  type="text" placeholder="Servicios" class="form-control form-checkbox-description" name="compra" ng-model="compra" 
+                            <input  type="text" placeholder="E.g: Tablet, computador, nevera" class="form-control form-checkbox-description" name="compra" ng-model="pagoDatos.articulo" 
                              ng-class="{ error:formBien.$dirty && formBien.compra.$error.required }" required>
                           
                         </div>
@@ -73,14 +73,14 @@
                             <div class="col-xs-12">
                                 <span>Costo</span>
                             </div>
-                            <input  type="number" min="1" placeholder="Costo" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="costoco" ng-model="costoco"  ng-class="{ error:formBien.$dirty && formBien.costoco.$error.required }" required>
+                            <input  type="number" min="1" placeholder="Costo" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="costoco" ng-model="pagoDatos.valor"  ng-class="{ error:formBien.$dirty && formBien.costoco.$error.required }" required>
                            
                         </div>
 
                           <div class="col-xs-12 text-right col-sm-2 btnmargen" >
 
                               <button class="btn btn-success ng-isolate-scope" type="submit"
-                               ng-disabled="formBien.compra.$error.required; formBien.costoco.$error.required" ng-click="agregar('compra')" >Adicionar</button>
+                               ng-disabled="formBien.compra.$error.required; formBien.costoco.$error.required" ng-click="pago()" >Adicionar</button>
                           </div>
                      
                       
