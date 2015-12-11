@@ -31,6 +31,7 @@ rentgular.controller('loginCtrl', ['servicioAuth', '$scope', '$firebaseAuth','$l
 			servicioAuth.ref().$authWithOAuthPopup(red_social)
 				.then(function(datos_autenticacion) {
 					console.log("EXITO AL AUTENTICAR CON "+red_social+"",datos_autenticacion)
+					$scope.mensaje = ''
 					$location.path('/dashboard')
 				})
 				.catch(function(error) {

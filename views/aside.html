@@ -27,8 +27,19 @@
           <li><a href="{{ruta.current.paginaActiva}}">Link in level 2</a></li>
         </ul>
       </li>
-      <li class="active"><a href="{{ruta.current.paginaActiva}}"><i class="fa fa-link"></i> <span>Link</span></a></li>
-      <li><a href="{{ruta.current.paginaActiva}}"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+      <li class="treeview">
+        <a href="{{ruta.current.paginaActiva}}"><i class="fa fa-credit-card"></i> <span>Egresos</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+        <li><a href="#egresos">Información</a></li>
+          <li><a href="#compras">Compras</a></li>
+          <li><a href="#pagosalario">Pago de salarios</a></li>
+          <li><a href="#servicios">Pago de servicios públicos</a></li>
+          <li><a href="#serviciosge">Pago de servicios generales</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#ingresos"><i class="fa fa-usd"></i> <span>Ingresos</span></a>
+      </li>
     </ul><!-- /.sidebar-menu -->
   </section>
   <!-- /.sidebar -->
