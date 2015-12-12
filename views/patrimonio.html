@@ -1,0 +1,366 @@
+<div class="wrapper">
+      <!-- Content Wrapper. Contains page content -->
+  <ng-include src="'views/header.html'"></ng-include>
+  <ng-include src="'views/aside.html'"></ng-include>
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Seleccione los Bienes
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+          <!-- CONTENIDO DE LA PAGINA-->
+          <div ng-controller="bienesController" class="row" style="padding:10px" > 
+            <div class="col-lg-12">
+               <div class="panel panel-default">
+
+
+                <div class="panel-body">
+                    <div class="row" style="padding:15px">
+
+                      <form>
+
+                        <div class="col-xs-12 col-md-8 col-xs-offset-0 col-md-offset-2">
+                          
+                          <div class="col-xs-12 col-sm-4 col-md-4 parent-btn-checkbox" ng-click="agregarMenu('ahorro')">
+                            <span class="btn-block text-center clearfix btn-checkbox" ng-class="{selected: ahorro==1 }" id="conAhorro">
+                              <div class="img-container">
+                                <img  src="img/BienesNro1.png" id="ahorro1">
+                                  <i class="glyphicon glyphicon-ok"></i>
+                              </div>  
+                              <div class="col-xs-12">
+                                <input type="hidden" value="1" id="valorAhorro">
+                                <label>Ahorros</label>
+                              </div>  
+                              <div class="more clear">
+                                <span class = "text-info" data-toggle="modal" data-target="#ahorros" id="ahorroQue">Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>  
+
+                            
+
+                          <div class="col-xs-12 col-sm-4 col-md-4  parent-btn-checkbox" ng-Click="agregarMenu('pension')">
+                            <span class="btn-block text-center clearfix btn-checkbox" ng-class="{selected: pension==1 }" >
+                              <div class="img-container">
+                                <img  src="img/BienesNro2.png" id="pensiones1">
+                                 <i class="glyphicon glyphicon-ok"></i>
+                                     </div>  
+                              <div class="col-xs-12">
+                                <input type="hidden" value="1" id="valorPension">
+                                <label>Pensiones Voluntarias</label>
+                              </div>  
+                              <div class="more clear">
+                                <span data-toggle="modal" data-target="#pensiones" id="pensionesQue">Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>  
+
+                          <div class="col-xs-12 col-sm-4 col-md-4  parent-btn-checkbox" ng-Click="agregarMenu('accion')">
+                            <span class="btn-block text-center clearfix btn-checkbox"  ng-class="{selected: accion==1 }">
+                              <div class="img-container">
+                                <img  src="img/BienesNro3.png" id="acciones1">
+                                 <i class="glyphicon glyphicon-ok"></i>
+                                    </div>  
+                              <div class="col-xs-12">
+                                <input type="hidden" value="1" id="valorAccion">
+                                <label>Acciones</label>
+                              </div>  
+                              <div class="more clear">
+                                <span data-toggle="modal" data-target="#acciones" >Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>    
+
+
+
+                            
+                        </div>
+                        <div class="col-xs-12 col-md-8 col-xs-offset-0 col-md-offset-2">
+                          
+                          <div class="col-xs-12 col-sm-4 col-md-4  parent-btn-checkbox" ng-Click="agregarMenu('vehiculo')">
+                            <span class="btn-block text-center clearfix btn-checkbox" ng-class="{selected: vehiculo==1 }" >
+                              <div class="img-container">
+                                <img  src="img/BienesNro4.png" id="vehiculos1">
+                                 <i class="glyphicon glyphicon-ok"></i>
+                                     </div>  
+                              <div class="col-xs-12">
+                                <label>Vehiculos</label>
+                              </div>  
+                              <div class="more clear">
+                                <span data-toggle="modal" data-target="#vehiculos" >Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>  
+                            
+
+                          <div class="col-xs-12 col-sm-4 col-md-4  parent-btn-checkbox" ng-Click="agregarMenu('mueble')">
+                            <span class="btn-block text-center clearfix btn-checkbox" ng-class="{selected: mueble==1 }" >
+                              <div class="img-container">
+                                <img  src="img/BienesNro5.png" id="muebles1">
+                                 <i class="glyphicon glyphicon-ok"></i>
+                                   </div>  
+                              <div class="col-xs-12">
+                                <label>Muebles y enseres</label>
+                              </div>  
+                              <div class="more clear">
+                                <span data-toggle="modal" data-target="#muebles" >Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>  
+
+                          <div class="col-xs-12 col-sm-4 col-md-4  parent-btn-checkbox"  ng-Click="agregarMenu('bienes')">
+                            <span class="btn-block text-center clearfix btn-checkbox" ng-class="{selected: bienes==1 }">
+                              <div class="img-container">
+                                <img  src="img/BienesNro6.png" id="bienes1">
+                                 <i class="glyphicon glyphicon-ok"></i>
+                                  </div>  
+                              <div class="col-xs-12">
+                                <label>Bienes raíces</label>
+                              </div>  
+                              <div class="more clear">
+                                <span data-toggle="modal" data-target="#bienes" >Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>    
+
+
+
+                            
+                        </div>
+                        <div class="col-xs-12  col-md-8 col-xs-offset-0 col-md-offset-2">
+                          
+                          <div class="col-xs-12 col-sm-4 col-md-4  parent-btn-checkbox" ng-Click="agregarMenu('cuenta')">
+                            <span class="btn-block text-center clearfix btn-checkbox" ng-class="{selected: cuenta==1 }" >
+                              <div class="img-container">
+                                <img  src="img/BienesNro7.png" id="cuentas1">
+                                 <i class="glyphicon glyphicon-ok"></i>
+                                   </div>  
+                              <div class="col-xs-12">
+                                <label>Cuentas por cobrar</label>
+                              </div>  
+                              <div class="more clear">
+                                <span data-toggle="modal" data-target="#cuentas" >Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>  
+                            
+
+                          <div class="col-xs-12 col-sm-4 col-md-4 parent-btn-checkbox" ng-Click="agregarMenu('maquinaria')">
+                            <span class="btn-block text-center clearfix btn-checkbox" ng-class="{selected: maquinaria==1 }">
+                              <div class="img-container">
+                                <img  src="img/BienesNro8.png" id="maquinaria1">
+                                 <i class="glyphicon glyphicon-ok"></i>
+                                      </div>  
+                              <div class="col-xs-12">
+                                <label>Maquinaria</label>
+                              </div>  
+                              <div class="more clear">
+                                <span data-toggle="modal" data-target="#maquinaria">Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>  
+
+                          <div class="col-xs-12 col-sm-4 col-md-4  parent-btn-checkbox" ng-Click="agregarMenu('otros')">
+                            <span class="btn-block text-center clearfix btn-checkbox" ng-class="{selected: otros==1 }">
+                              <div class="img-container">
+                                <img  src="img/BienesNro9.png" id="otros1">
+                                 <i class="glyphicon glyphicon-ok"></i>
+                                 </div>  
+                              <div class="col-xs-12">
+                                <label>Otros</label>
+                              </div>  
+                              <div class="more clear">
+                                <span data-toggle="modal" data-target="#otros">Qué es?</span>
+                              </div>  
+                            </span>     
+                          </div>    
+
+
+
+                            
+                        </div>
+
+                        </form>
+
+                        <div id="buscarDato"> </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="ahorros" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Ahorros</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-justify">Son la parte del ingreso que no se destina al gasto y que se reserva para necesidades futuras. La clave del ahorro es la capacidad de juntar dinero de manera regular durante un período de tiempo.</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade" id="pensiones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Pensiones Voluntarias</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-justify">Son una forma de ahorro voluntario que le da a un trabajador vinculado o independiente, la posibilidad de complementar la pensión obligatoria, obtenida durante su vida laboral. El trabajador realiza aportes periódicos a un Fondo de Pensiones y Cesantías que administra los recursos a través de portafolios de inversión con diferentes niveles de riesgo y rentabilidad.</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade" id="acciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Acciones</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-justify">Representan parte de la posesión del capital de una empresa. Una compañía emite acciones para establecer su capital inicial o para pagar otras actividades. Certificados de las inversiones emitidos por las entidades donde se constituyó la inversión, por ejemplo: CDT, bonos, derechos fiduciarios, inversiones obligatorias, entre otras.</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade" id="vehiculos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Vehiculos</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-justify">Son todos aquellos medios a través de los cuales se ejecuta el traslado de un elemento de un lugar a otro. Estan relacionados con el transporte, tanto de personas como de cargas, entre los más comunes están el carro, los trenes, la motocicleta y los aviones.</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade" id="muebles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Muebles y enseres</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-justify">También denominados mobiliario, son el conjunto de objetos que constituye el equipamiento de un inmueble (por ejemplo, camas, sillas y mesas) y que confieren a las diferentes estancias funciones particulares, como la de dormitorio, comedor, salón, cocina u oficina.</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade" id="bienes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Bienes raices</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-justify">Son aquellas propiedades que no pueden moverse del lugar en el que están, tales como tierras, locales o viviendas.</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade" id="cuentas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Cuentas por cobrar</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-justify">Nombre de la cuenta donde se registran los incrementos y los recortes vinculados a la venta de conceptos diferentes a productos o servicios. Esta cuenta está compuesta por letras de cambio, títulos de crédito y pagarés a favor de la empresa.</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade" id="maquinaria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Maquinaria</h4>
+                              </div>
+                              <div class="modal-body">
+                                <p class="text-justify">Es el conjunto de máquinas o bienes de equipo mediante las cuales se realiza la extracción o elaboración de los productos de una empresa.</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="modal fade" id="otros" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Otros</h4>
+                              </div>
+                              <div class="modal-body">
+                                ...
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+         </div>
+        </div>
+        <!-- /CONTENIDO DE LA PAGINA -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <ng-include src="'views/footer.html'"></ng-include>
+      <div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->
