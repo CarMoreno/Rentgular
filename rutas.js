@@ -47,6 +47,36 @@ rentgular.config(function($routeProvider) {
 			controller  : 'egresosCtrl',
 			paginaActiva: '#egresos'
 		})
+		.when('/patrimonio', {
+			templateUrl : 'views/patrimonio.html',
+			controller : 'patrimonioCtrl',
+			paginaActiva : '#patrimonio'
+		})
+		.when('/ahorros', {
+			templateUrl : 'views/ahorros.html',
+			controller  : 'registroPatrimonioCtrl',
+			paginaActiva: '#ahorros'
+		})
+		.when('/pensionesvol', {
+			templateUrl : 'views/pensionesvol.html',
+			controller  : 'registroPatrimonioCtrl',
+			paginaActiva: '#pensionesvol'
+		})
+		.when('/acciones', {
+			templateUrl : 'views/acciones.html',
+			controller  : 'registroPatrimonioCtrl',
+			paginaActiva: '#acciones'
+		})
+		.when('/bienraiz', {
+			templateUrl : 'views/bienraiz.html',
+			controller  : 'registroPatrimonioCtrl',
+			paginaActiva: '#bienraiz'
+		})
+		.when('/otros', {
+			templateUrl : 'views/otros.html',
+			controller  : 'registroPatrimonioCtrl',
+			paginaActiva: '#otros'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
