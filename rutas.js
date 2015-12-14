@@ -13,7 +13,7 @@ rentgular.config(function($routeProvider) {
 			controller 	: 'registroCtrl'
 		})
 		.when('/dashboard', {
-			templateUrl : 'views/dashboard.html', // aca deberá de redirigir al dashboard
+			templateUrl : 'views/dashboard.html', // aca deberá redirigir al dashboard
 			controller  : 'dashboardCtrl',
 			paginaActiva  : '#dashboard' //Url activa en ese momento, cada ruta debe de tener esta clave
 		})
@@ -36,11 +36,6 @@ rentgular.config(function($routeProvider) {
 			templateUrl : 'views/servicios.html',
 			controller  : 'serviciosPublicosCtrl',
 			paginaActiva: '#servicios'
-		})
-		.when('/serviciosge', {
-			templateUrl : 'views/serviciosge.html',
-			controller  : 'serviciosGeneralesCtrl',
-			paginaActiva: '#serviciosge'
 		})
 		.when('/egresos', {
 			templateUrl : 'views/egresos.html',

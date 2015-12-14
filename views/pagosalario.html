@@ -33,11 +33,11 @@
                               <tbody>
                                <!--  Lo que debe crear el JS -->
                                   
-                                  <tr ng-repeat="dato in arrayEgresos">
+                                  <tr ng-repeat="dato in miSalario">
                                     <td><div> {{ dato.descripcion }} </div></td>
                                     <td class="text-right"><div> {{ dato.valor }} </div></td>
                                     <td class="text-right">
-                                    <div ><span ng-click="removepa(dato)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
+                                    <div ><span ng-click="remover(dato)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
 
 
                                   </td>

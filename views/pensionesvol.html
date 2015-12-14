@@ -14,7 +14,7 @@
         <!-- Main content -->
         <section class="content">
           <!-- CONTENIDO DE LA PAGINA-->
-          <div ng-controller="formController" class="row"  style="padding:10px" > 
+          <div class="row"  style="padding:10px" > 
             <div class="col-lg-12">
               <div class="panel panel-default">
 
@@ -36,11 +36,11 @@
                                 <tbody>
                                   
                                     
-                                    <tr ng-repeat="registro in miPatrimonio | filter:'fondopensiones'">
+                                    <tr ng-repeat="registro in miPatrimonio | filter:'Fondo_pensiones'">
                                       <td><div> {{ registro.descripcion }} </div></td>
                                       <td class="text-right"><div> {{ registro.valor }} </div></td>
                                       <td class="text-right">
-                                      <div ><span ng-click="removeco(dato)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
+                                      <div ><span ng-click="remover(registro)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
 
 
                                     </td>
@@ -69,7 +69,7 @@
                           <div class="col-xs-12">
                               <span>Fondo de pensiones</span>
                           </div>
-                          <input  type="text" placeholder="Fondo de pensiones" class="form-control form-checkbox-description" name="fondopensiones" ng-model="patrimonioDatos.descripcion" 
+                          <input  type="text" placeholder="Fondo de pensiones" class="form-control form-checkbox-description" name="fondopensiones" ng-model="datos.descripcion" 
                            ng-class="{ error:formBien.$dirty && formBien.fondopensiones.$error.required }" required>
                         
                       </div>
@@ -77,14 +77,20 @@
                           <div class="col-xs-12">
                               <span>Saldo</span>
                           </div>
-                          <input  type="number" placeholder="Saldo" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="saldo" ng-model="patrimonioDatos.valor"  ng-class="{ error:formBien.$dirty && formBien.saldo.$error.required }" required>
-                         
+                          <input  type="number" placeholder="Saldo" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="saldo" ng-model="datos.valor"  ng-class="{ error:formBien.$dirty && formBien.saldo.$error.required }" required min="1">      
                       </div>
+                      <div class="col-xs-12 col-sm-3" >
+                          <div class="col-xs-12">
+                              <span>Fecha Adquisicion</span>
+                          </div>
+                          <input  type="date" placeholder="Fecha" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="fecha" ng-model="datos.fecha"  ng-class="{ error:formBien.$dirty && formBien.fecha.$error.required }" required>      
+                      </div>
+
 
                         <div class="col-xs-12 text-right col-sm-2 btnmargen" >
 
                             <button class="btn btn-success ng-isolate-scope" type="submit"
-                             ng-disabled="formBien.fondopensiones.$error.required; formBien.saldo.$error.required" ng-click="registrarPatrimonio('fondopensiones')" >Adicionar</button>
+                             ng-disabled="formBien.fondopensiones.$error.required; formBien.saldo.$error.required; formBien.fecha.$error.required" ng-click="registrarPatrimonio('Fondo_pensiones')" >Adicionar</button>
                         </div>
                  </div>
                 </div>

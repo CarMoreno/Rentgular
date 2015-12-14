@@ -41,34 +41,35 @@ rentgular.controller('ingresosCtrl', ['servicioAuth', '$scope', '$route', '$fire
 			})
 		}
 
-		function cargar_datos () {
-			// console.log($scope.arrayIngresos.$loaded())
-			ingresosRef.orderByChild("id_usuario")
-				.equalTo($scope.datosUserLog.uid).on("child_added", 
-				function(snapshot) {
-				//console.log("Estoy logueado con: "+$scope.datosUserLog.uid)
-				//console.log("Ingresos del usuario actualmente logueado: "+$scope.arrayIngresos.$keyAt(snapshot.key()))				
-				$scope.arrayIngresos.$loaded()
-					.then(function() {
-						angular.forEach($scope.arrayIngresos, function(ingreso) {
-							if(ingreso.$id == snapshot.key()){
-								console.log(ingreso)
-							}
-						})
-					})
-			})
+
+		/**
+		 * [remover Elimina un registro seleccionado]
+		 * @param  {[Array]} dato [El registro que debe ser eliminado]
+		 */
+		$scope.remover = function(dato) 
+		{
+			var indice = $scope.arrayIngresos.$indexFor(dato.$id)//Se obtiene el indice del registro en la bd con un id determinado
+			$scope.arrayIngresos.$remove(indice)//Se elimina el registro ubicado en el indice indicado
+
 		}
-		console.log("Estoy logueado con "+$scope.datosUserLog.uid)
+
+
+		function cargar_datos () {
+			//Se muestra todo el patrimonio que tienes hasta el momento
+			var query = ingresosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)
+			$scope.misIngresos = $firebaseArray(query)
+		}
 		cargar_datos()
+
+
 		// Esto nos permite que el array solo contenga los datos que hemos insertado y no
 		// este lleno con datos del servidor, por defecto Firebase llena las referencias a
 		// $firebaseArray con metodos y otras variables, con $loaded() solo tramemos los datos
 		// que esten guardados en la base de datos NO MAS.
-		$scope.arrayIngresos.$loaded()
+		$scope.misIngresos.$loaded()
 			.then(function() {
-				angular.forEach($scope.arrayIngresos, function(ingreso) {
-					$scope.totalIngresos += ingreso.valor
-					console.log(ingreso)	
+				angular.forEach($scope.misIngresos, function(ingreso) {
+					$scope.totalIngresos += ingreso.valor	
 				})
 			})
 	}

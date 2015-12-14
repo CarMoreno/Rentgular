@@ -12,7 +12,7 @@
         <!-- Main content -->
         <section class="content">
           <!-- CONTENIDO DE LA PAGINA-->
-          <div ng-controller="formController" class="row"  style="padding:10px" > 
+          <div class="row"  style="padding:10px" > 
             <div class="col-lg-12">
               <div class="panel panel-default">
 
@@ -38,13 +38,11 @@
                                       <td><div> {{ registro.descripcion }} </div></td>
                                       <td class="text-right"><div> {{ registro.valor }} </div></td>
                                       <td class="text-right">
-                                      <div ><span ng-click="removeco(dato)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
+                                      <div ><span ng-click="remover(registro)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
 
 
                                     </td>
                                   </tr>
-                                 
-                                
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -60,89 +58,72 @@
 
                       <!-- /TABLAS -->
                      <!--  CHECKBOX-->
-                        <div   class="col-xs-12 nopadding-sides form-checkbox">
+                <div   class="col-xs-12 nopadding-sides form-checkbox">
                 <div  class="col-xs-12 nopadding-sides" >
                     <div  class="col-xs-12 col-sm-2 nopadding-sides checkbox">
                         <label  >
-                            <input  ng-click= "ShowForm('ahorros')" type="checkbox" id="chkAh"  name="CtaAhorros">&nbsp;<span>Cta ahorros</span>
+                            <span>Cta ahorros</span>
                         </label>
                     </div>                      
                     <div class="col-xs-12 col-sm-4" ng-hide="ahorro" > 
-                        <input  type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcion" ng-model="patrimonioDatos.descripcion" 
-                         ng-class="{ error:formBien.$dirty && formBien.descripcion.$error.required }" required>
+                        <input  type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcion" ng-model="misAhorros.descripcion" ng-required = "true">
                     </div>
                     <div class="col-xs-12 col-sm-3" ng-hide="ahorro">
-                        <input  type="number" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="valor" ng-model="patrimonioDatos.valor"  ng-class="{ error:formBien.$dirty && formBien.valor.$error.required }" required>
+                        <input  type="number" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="valor" ng-model="misAhorros.valor"  ng-required = "true" min="1">
                     </div>
                     <div class="col-xs-12 col-sm-3" ng-hide="ahorro">
-                        <input  type="date" placeholder="Fecha" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="fecha" ng-model="patrimonioDatos.fecha"  ng-class="{ error:formBien.$dirty && formBien.fecha.$error.required }" required>
+                        <input  type="date" placeholder="Fecha" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="fecha" ng-model="misAhorros.fecha"  ng-required = "true">
                     </div>
 
                     <div class="col-xs-12 text-right col-sm-2" ng-hide="ahorro">
                           <button class="btn btn-success ng-isolate-scope" type="submit"
-                           ng-disabled="formBien.descripcion.$error.required; formBien.valor.$error.required; formBien.fecha.$error.required" ng-click="registrarPatrimonio('Cuenta ahorros')" >Adicionar</button>
-                    </div>
-                   
-                    
+                           ng-disabled="formBien.descripcion.$error.required || formBien.valor.$error.required || formBien.fecha.$error.required" ng-click="registrarPatrimonio('Cuenta ahorros')" >Adicionar</button>
+                    </div>                    
                 </div>
+
 
                  <div class="col-xs-12 nopadding-sides"  >
                     <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
                         <label>
-                            <input ng-click= "ShowForm('corriente')" type="checkbox" id="chkCor" >&nbsp;<span>Cta corriente</span>
+                              <span>Cta corriente</span>
                         </label>
                     </div> 
                     <div class="col-xs-12 col-sm-4"  ng-hide="corriente">
-                        <input type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcion1" ng-model="patrimonioDatos.descripcion"  ng-class="{ error:formBien.$dirty && formBien.descripcion1.$error.required }"  required>
+                        <input type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcion1" ng-model="miCorriente.descripcion"  ng-required = "true">
                     </div>
                     <div class="col-xs-12 col-sm-3" ng-hide="corriente">
-                        <input type="number" name="valor1" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" ng-model="patrimonioDatos.valor" style="text-align: right;" ng-class="{ error:formBien.$dirty && formBien.valor1.$error.required }" required>
+                        <input type="number" name="valor1" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" ng-model="miCorriente.valor" style="text-align: right;" ng-required = "true" min="1">
+                    </div>
+                    <div class="col-xs-12 col-sm-3" ng-hide="ahorro">
+                        <input  type="date" placeholder="Fecha" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="fecha1" ng-model="miCorriente.fecha"  ng-required = "true">
                     </div>
                     <div class="col-xs-12 text-right col-sm-2" ng-hide="corriente">
                         <button class="btn btn-success ng-isolate-scope" type="submit"
-                        ng-disabled="formBien.descripcion1.$error.required; formBien.valor1.$error.required" ng-click="registrarPatrimonio('Cuenta corriente')">Adicionar</button>
-                    </div>
-                    
+                        ng-disabled="formBien.descripcion1.$error.required || formBien.valor1.$error.required  || formBien.fecha1.$error.required" ng-click="registrarPatrimonio('Cuenta corriente')">Adicionar</button>
+                    </div>   
                 </div>
 
-                 <div class="col-xs-12 nopadding-sides"  >
-                    <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                        <label>
-                            <input ng-click= "ShowForm('coop')" type="checkbox" id="chkcoop" >&nbsp;<span>Cooperativas</span>
-                        </label>
-                    </div>
-                    <div class="col-xs-12 col-sm-4"  ng-hide="coop">
-                        <input type="text" placeholder="Descripción" name="descripcion2" ng-model="patrimonioDatos.descripcion" class="form-control form-checkbox-description"
-                        ng-class="{ error:formBien.$dirty && formBien.descripcion2.$error.required }"  required>
-                    </div>
-                    <div class="col-xs-12 col-sm-3" ng-hide="coop">
-                        <input type="text" placeholder="Valor" name="valor2" ng-model="patrimonioDatos.valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" ng-class="{ error:formBien.$dirty && formBien.valor2.$error.required }" required>
-                    </div>
-                    <div class="col-xs-12 text-right col-sm-2" ng-hide="coop" ng-click="registrarPatrimonio('Çuenta Cooperativas')">
-                        <button class="btn btn-success ng-isolate-scope"
-                        ng-disabled="formBien.descripcion2.$error.required; formBien.valor2.$error.required" >Adicionar</button>
-                    </div>
-                    
-                </div>
 
-                 <div class="col-xs-12 nopadding-sides" >
-                    <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                        <label>
-                            <input ng-click= "ShowForm('otros')" id="chkotro" type="checkbox" >&nbsp;<span>Otros</span>
+                <div  class="col-xs-12 nopadding-sides" >
+                    <div  class="col-xs-12 col-sm-2 nopadding-sides checkbox">
+                        <label  >
+                            <span>Cooperativas</span>
                         </label>
+                    </div>                      
+                    <div class="col-xs-12 col-sm-4" ng-hide="ahorro" > 
+                        <input  type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcion2" ng-model="misCooperativas.descripcion" ng-required = "true">
                     </div>
-                    <div class="col-xs-12 col-sm-4"  ng-hide="otros">
-                        <input type="text" placeholder="Descripción" name="descripcion3" ng-model="patrimonioDatos.descripcion" class="form-control form-checkbox-description"
-                         ng-class="{ error:formBien.$dirty && formBien.descripcion3.$error.required }"  required>
+                    <div class="col-xs-12 col-sm-3" ng-hide="ahorro">
+                        <input  type="number" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="valor2" ng-model="misCooperativas.valor"  ng-required = "true" min="1">
                     </div>
-                    <div class="col-xs-12 col-sm-3" ng-hide="otros">
-                        <input type="text" placeholder="Valor" name="valor3" ng-model="patrimonioDatos.valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" ng-class="{ error:formBien.$dirty && formBien.valor3.$error.required }"  required>
+                    <div class="col-xs-12 col-sm-3" ng-hide="ahorro">
+                        <input  type="date" placeholder="Fecha" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="fecha2" ng-model="misCooperativas.fecha"  ng-required = "true">
                     </div>
-                    <div class="col-xs-12 text-right col-sm-2" ng-hide="otros">
-                        <button class="btn btn-success ng-isolate-scope" ng-click="registrarPatrimonio('Cuenta Otras')"
-                         ng-disabled="formBien.descripcion3.$error.required; formBien.valor3.$error.required">Adicionar</button>
-                    </div>
-                    
+
+                    <div class="col-xs-12 text-right col-sm-2" ng-hide="ahorro">
+                          <button class="btn btn-success ng-isolate-scope" type="submit"
+                           ng-disabled="formBien.descripcion2.$error.required || formBien.valor2.$error.required || formBien.fecha2.$error.required" ng-click="registrarPatrimonio('Cuenta cooperativas')" >Adicionar</button>
+                    </div>                    
                 </div>
                
                 </div>

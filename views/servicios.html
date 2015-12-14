@@ -36,11 +36,11 @@
                               <tbody>
                                <!--  Lo que debe crear el JS -->
                                   
-                                  <tr ng-repeat="servicio in arrayServicosPublicos">
+                                  <tr ng-repeat="servicio in misServicios">
                                     <td><div> {{ servicio.concepto }} </div></td>
                                     <td class="text-right"><div> {{ servicio.valor }} </div></td>
                                     <td class="text-right">
-                                    <div ><span ng-click="removesp(dato)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
+                                    <div ><span ng-click="remover(servicio)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>
 
 
                                   </td>

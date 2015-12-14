@@ -19,19 +19,40 @@ rentgular.controller('serviciosPublicosCtrl', ['servicioAuth', '$scope', '$route
 				id_usuario: $scope.ref.$getAuth().uid,
 				valor: $scope.pagoDatos.valor,
 				concepto: $scope.pagoDatos.concepto
-			})
-			
+			})	
 		}
+
+
+		/**
+		 * [remover Elimina un registro seleccionado]
+		 * @param  {[Array]} dato [El registro que debe ser eliminado]
+		 */
+		$scope.remover = function(dato) 
+		{
+			var indice = $scope.arrayServicosPublicos.$indexFor(dato.$id)//Se obtiene el indice del registro en la bd con un id determinado
+			$scope.arrayServicosPublicos.$remove(indice)//Se elimina el registro ubicado en el indice indicado
+
+		}
+
+
+		function cargar_datos()
+		{
+			//Se muestran los servicios publicos
+			var query = serviciosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)
+			$scope.misServicios = $firebaseArray(query)
+		}
+
+		cargar_datos()
+
 
 		// Esto nos permite que el array solo contenga los datos que hemos insertado y no
 		// este lleno con datos del servidor, por defecto Firebase llena las referencias a
 		// $firebaseArray con metodos y otras variables, con $loaded() solo tramemos los datos
 		// que esten guardados en la base de datos NO MAS.
-		$scope.arrayServicosPublicos.$loaded()
+		$scope.misServicios.$loaded()
 			.then(function() {
-				angular.forEach($scope.arrayServicosPublicos, function(servicioPublico) {
+				angular.forEach($scope.misServicios, function(servicioPublico) {
 					$scope.totalServicios += servicioPublico.valor
-					console.log($scope.totalServicios)	
 				})
 			})
 	}
