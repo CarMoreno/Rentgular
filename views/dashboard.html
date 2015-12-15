@@ -13,10 +13,63 @@
 
         <!-- Main content -->
         <section class="content">
-
-        <!-- CONTENIDO DE LA PAGINA-->
+        <!-- CONTENIDO DE LA VISTA-->
         <div class="row"> 
-        <!--Graficas y demas del Dashboard-->
+        <!--Tabla de ultimos movimientos-->
+          <div class="col-md-4 table-responsive data-table-container">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <p class="text-center">Últimos movimientos</p>
+              </div>
+              <div class="panel-body">
+                <table class="data-table col-xs-12 data-table-container">
+                      <thead>
+                          <tr>
+                              <th>Descripción</th>
+                              <th class="text-right">Saldo</th>
+                              <th class="text-right">Tipo de Movimiento</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="movimiento in arrayUltimosIngresos">
+                            <td><div> {{ movimiento.descripcion }} </div></td>
+                            <td class="text-right"><div> {{ movimiento.valor }} </div></td>
+                            <td class="text-right"><div >Ingresos</div></td>
+                          </tr>
+                          <tr ng-repeat ="movimiento in arrayUltimasCompras">
+                            <td><div> {{ movimiento.articulo }} </div></td>
+                            <td class="text-right"><div> {{ movimiento.valor }} </div></td>
+                            <td class="text-right"><div >Egresos</div></td>
+                          </tr>
+                          <tr ng-repeat = "movimiento in arrayUltimosPagos">
+                            <td><div> {{ movimiento.descripcion }} </div></td>
+                            <td class="text-right"><div> {{ movimiento.valor }} </div></td>
+                            <td class="text-right"><div >Egresos</div></td>
+                          </tr>
+                          <tr ng-repeat = "m in arrayUltimosPagosServicios">
+                            <td><div> {{ m.concepto }} </div></td>
+                            <td class="text-right"><div>{{ m.valor }} </div></td>
+                            <td class="text-right"><div >Egresos</div></td>
+                          </tr>
+                      </tbody>
+                      <!-- <tfoot>
+                          <tr>
+                              <td>Total</td>
+                              <td class="text-right">
+                                  $<span class="total-data-table" data-total="value">{{totalPatrimonio}}</span>
+                              </td>
+                              <td colspan="2">&nbsp;</td>
+                          </tr>
+                      </tfoot> -->
+                </table>
+                
+              </div>
+            </div>
+          </div>
+        <!--Final tabla de ultimos movimientos--> 
+        <!--Graficas-->
+        <div class="col-md-8"></div>
+        <!--Fin graficas--> 
         </div>
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->

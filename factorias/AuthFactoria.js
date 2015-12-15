@@ -8,6 +8,14 @@ rentgular.factory('servicioAuth', ['$firebaseAuth',
 	function($firebaseAuth) {
 		var ref = new Firebase("https://rentas.firebaseIO.com")
 		var authObj = $firebaseAuth(ref)
+
+		function ucfirst (str) {
+      	// inspirado en: http://kevin.vanzonneveld.net
+	      str += '';
+	      var f = str.charAt(0).toUpperCase();
+	      return f + str.substr(1);
+	    }
+
 		var obj = {
 			ref : function() {
 				return authObj
@@ -27,6 +35,9 @@ rentgular.factory('servicioAuth', ['$firebaseAuth',
 					document.getElementById('exitoCambio').innerHTML = ''
 					document.getElementById('errorCambio').innerHTML = 'Error, vuelva a intentarlo'
 				})
+			},
+			name_user: function(email_user) {
+				return ucfirst(email_user.substr(0, email_user.indexOf('@')) || '')
 			}
 		}
 		return obj

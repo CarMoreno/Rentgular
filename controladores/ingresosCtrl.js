@@ -7,7 +7,6 @@ rentgular.controller('ingresosCtrl', ['servicioAuth', '$scope', '$route', '$fire
 		$scope.cambio = {}
 		$scope.ref = servicioAuth.ref() // objeto $firebaseAuth
 		$scope.datosUserLog = servicioAuth.ref().$getAuth() //datos del usuario logueado
-		//$scope.cargarDatos = servicioAuth.cargar_datos()
 		// ---------------------------------------------------------------------------
 		var ingresosRef = new Firebase('https://rentas.firebaseIO.com/ingresos')
 		var ingresos = {}

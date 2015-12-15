@@ -7,7 +7,7 @@ rentgular.controller('serviciosPublicosCtrl', ['servicioAuth', '$scope', '$route
 		$scope.cambio = {}
 		$scope.ref = servicioAuth.ref() // objeto $firebaseAuth
 		$scope.datosUserLog = servicioAuth.ref().$getAuth() //datos del usuario logueado
-		console.log($scope.ref.$getAuth().password.email)
+		// -------------------------------------------------------------------------------------
 		var serviciosRef = new Firebase('https://rentas.firebaseIO.com/egresos/servicios_publicos')
 		$scope.arrayServicosPublicos = $firebaseArray(serviciosRef)
 		$scope.pagoDatos = {}

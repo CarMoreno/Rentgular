@@ -56,69 +56,63 @@
 <!-- /TABLAS -->
                 <div   class="col-xs-12 nopadding-sides form-checkbox">
         <div  class="col-xs-12 nopadding-sides" >
-            <div  class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                <label  >
-                    <span>Vehiculos</span>
-                </label>
+            <div  class="col-xs-12 col-sm-2 checkbox">
+                <label>Vehiculos</label>
             </div>                      
-            <div class="col-xs-12 col-sm-4" ng-hide="vehiculos" > 
+            <div class="col-xs-6 col-sm-3" ng-hide="vehiculos" > 
                 <input  type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcionve" ng-model="misVehiculos.descripcion" 
                  required = "true">    
             </div>
 
-            <div class="col-xs-12 col-sm-3" ng-hide="vehiculos">
+            <div class="col-xs-6 col-sm-2" ng-hide="vehiculos">
                 <input  type="number" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="valorve" ng-model="misVehiculos.valor" required = "true" min="1">
             </div>
 
-            <div class="col-xs-12 col-sm-3" ng-hide="vehiculos">
+            <div class="col-xs-6 col-sm-2" ng-hide="vehiculos">
                 <input  type="date" placeholder="Fecha" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" name="fechave" ng-model="misVehiculos.fecha" required = "true">
             </div>
 
-            <div class="col-xs-12 text-right col-sm-2" ng-hide="vehiculos">
+            <div class="col-xs-6 text-right col-sm-2" ng-hide="vehiculos">
                   <button class="btn btn-success ng-isolate-scope" type="submit"
                    ng-disabled="formBien.descripcionve.$error.required || formBien.valorve.$error.required || formBien.fechave.$error.required" ng-click="registrarPatrimonio('Vehiculos')" >Adicionar</button>
             </div>          
         </div>
 
          <div class="col-xs-12 nopadding-sides"  >
-            <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                <label>
-                    <span>Muebles y enseres</span>
-                </label>
+            <div class="col-xs-12 col-sm-2 checkbox">
+                <label>Muebles y enseres</label>
             </div> 
-            <div class="col-xs-12 col-sm-4"  ng-hide="muebles">
+            <div class="col-xs-6 col-sm-3"  ng-hide="muebles">
                 <input type="text" placeholder="Descripción" class="form-control form-checkbox-description" name="descripcionmu" ng-model="misMuebles.descripcion"  required = "true">
             </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="muebles">
+            <div class="col-xs-6 col-sm-2" ng-hide="muebles">
                 <input type="number" name="valormu" placeholder="Valor" class="form-control form-checkbox-value" autocomplete="off" ng-model="misMuebles.valor" style="text-align: right;" required = "true" min="1">
             </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="muebles">
+            <div class="col-xs-6 col-sm-2" ng-hide="muebles">
                 <input type="date" name="fechamu" placeholder="Fecha" class="form-control form-checkbox-value" autocomplete="off" ng-model="misMuebles.fecha" style="text-align: right;" required = "true">
             </div>
-            <div class="col-xs-12 text-right col-sm-2" ng-hide="muebles">
+            <div class="col-xs-6 text-right col-sm-2" ng-hide="muebles">
                 <button class="btn btn-success ng-isolate-scope" type="submit"
                 ng-disabled="formBien.descripcionmu.$error.required || formBien.valormu.$error.required || formBien.fechamu.$error.required" ng-click="registrarPatrimonio('Muebles')">Adicionar</button>
             </div>
             
         </div>
 
-         <div class="col-xs-12 nopadding-sides"  >
+         <div class="col-xs-12 nopadding-sides">
             <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                <label>
-                    <span>Cuentas x cobrar</span>
-                </label>
+                <label>Cuentas por cobrar</label>
             </div>
-            <div class="col-xs-12 col-sm-4"  ng-hide="cuentas">
+            <div class="col-xs-6 col-sm-3"  ng-hide="cuentas">
                 <input type="text" placeholder="Descripción" name="descripcioncu" ng-model="misCobros.descripcion" class="form-control form-checkbox-description"
                 required="true">
             </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="cuentas">
+            <div class="col-xs-6 col-sm-2" ng-hide="cuentas">
                 <input type="number" placeholder="Valor" name="valorcu" ng-model="misCobros.valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" required="true" min="1">
             </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="cuentas">
+            <div class="col-xs-6 col-sm-2" ng-hide="cuentas">
                 <input type="date" placeholder="Fecha" name="fechacu" ng-model="misCobros.fecha" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" required="true">
             </div>
-            <div class="col-xs-12 text-right col-sm-2" ng-hide="cuentas" ng-click="registrarPatrimonio('Cobros')">
+            <div class="col-xs-6 text-right col-sm-2" ng-hide="cuentas" ng-click="registrarPatrimonio('Cobros')">
                 <button class="btn btn-success ng-isolate-scope"
                 ng-disabled="formBien.descripcioncu.$error.required || formBien.valorcu.$error.required || formBien.fechacu.$error.required" >Adicionar</button>
             </div>
@@ -126,22 +120,20 @@
         </div>
 
          <div class="col-xs-12 nopadding-sides"  >
-            <div class="col-xs-12 col-sm-2 nopadding-sides checkbox">
-                <label>
-                    <span>Maquinaria</span>
-                </label>
+            <div class="col-xs-12 col-sm-2 checkbox">
+                <label>Maquinaria</label>
             </div>
-            <div class="col-xs-12 col-sm-4"  ng-hide="cuentas">
+            <div class="col-xs-6 col-sm-3"  ng-hide="cuentas">
                 <input type="text" placeholder="Descripción" name="descripcionma" ng-model="miMaquinaria.descripcion" class="form-control form-checkbox-description"
                 required="true">
             </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="cuentas">
+            <div class="col-xs-6 col-sm-2" ng-hide="cuentas">
                 <input type="number" placeholder="Valor" name="valorma" ng-model="miMaquinaria.valor" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" required="true" min="1">
             </div>
-            <div class="col-xs-12 col-sm-3" ng-hide="cuentas">
+            <div class="col-xs-6 col-sm-2" ng-hide="cuentas">
                 <input type="date" placeholder="Fecha" name="fechama" ng-model="miMaquinaria.fecha" class="form-control form-checkbox-value" autocomplete="off" style="text-align: right;" required="true">
             </div>
-            <div class="col-xs-12 text-right col-sm-2" ng-hide="cuentas" ng-click="registrarPatrimonio('Maquinaria')">
+            <div class="col-xs-6 text-right col-sm-2" ng-hide="cuentas" ng-click="registrarPatrimonio('Maquinaria')">
                 <button class="btn btn-success ng-isolate-scope"
                 ng-disabled="formBien.descripcionma.$error.required || formBien.valorma.$error.required || formBien.fechama.$error.required" >Adicionar</button>
             </div>
