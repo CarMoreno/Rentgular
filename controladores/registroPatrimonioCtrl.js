@@ -54,12 +54,12 @@ rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', '$scope', '$rout
 
 			//Se almacena la informacion en la URI especificada en la variable patrimonioRef
 			$scope.arrayPatrimonio.$add({
-				tipo : tipo,
+				por_concepto_de : tipo,
 				descripcion : patrimonioDatos.descripcion,
 				valor : patrimonioDatos.valor,
 				fecha_adquisicion : patrimonioDatos.fecha.toString(), //Se debe convertir el objeto Date devuelto por el campo a string para ser almacenado
 				fecha_registro : fechaIngresoRegistro.toString(),
-				propietario: $scope.datosUserLog.uid
+				id_usuario: $scope.datosUserLog.uid
 			})
 		}
 
@@ -70,7 +70,7 @@ rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', '$scope', '$rout
 		function cargarPatrimonio()
 		{
 			//Se muestra todo el patrimonio que tienes hasta el momento
-			var query = patrimonioRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid)//Se busca en los nodos el atributo propietario que sea igual
+			var query = patrimonioRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)//Se busca en los nodos el atributo propietario que sea igual
 																								 //a la identificacion del usuario logueado
 			$scope.miPatrimonio = $firebaseArray(query)
 		}

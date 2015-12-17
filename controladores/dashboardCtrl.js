@@ -22,6 +22,13 @@ rentgular.controller('dashboardCtrl', ['servicioAuth', '$scope', '$route', '$fir
 		var descripcion = new Array()
 		var tipo = new Array()
 		var valor = new Array()
+		var losIngresos
+
+		var laCompras
+		var descripcionCompras = new Array()
+		var tipoCompras = new Array()
+		var valorCompras = new Array()
+
 
 		
 		//Setea el array de ingresos con los ultimos dos ingresos del usuario logueado
@@ -47,82 +54,66 @@ rentgular.controller('dashboardCtrl', ['servicioAuth', '$scope', '$route', '$fir
 			//console.log($scope.arrayUltimosPagosServicios)
 		}
 
-		function graficarIngresos(){
-			var query_ingresos = ingresosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)
-			$scope.losIngresos = $firebaseArray(query_ingresos)
+		/**
+		 * [graficarIngresos description]
+		 * @return {[type]} [description]
+		 */
+		function graficarCausales(referencia, array, titulo, tituloX, nombreSerie, arrayDescripcion, arrayValor, arrayTipo){
+			var query_graficas = referencia.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)
+			$scope.array = $firebaseArray(query_graficas)
 
-			$scope.losIngresos.$loaded()
+			$scope.array.$loaded()
 				.then(function() {
-					angular.forEach($scope.losIngresos, function(ingreso) {
-							tipo.push(ingreso.por_concepto_de),
-							descripcion.push(ingreso.descripcion),
-							valor.push(ingreso.valor)
+					angular.forEach($scope.array, function(registro) {
+							arrayTipo.push(registro.por_concepto_de),
+							arrayDescripcion.push(registro.descripcion+" - "+registro.por_concepto_de),
+							arrayValor.push(registro.valor)
 						})	
+					console.log(eval(arrayValor.join('+')))
 			//#################################################################################################
-			$('#chartdiv').highcharts({
+			    $('#chartdiv').highcharts({
 			        chart: {
-			            type: 'bar'
+			            type: 'column'
 			        },
 			        title: {
-			            text: 'Ingresos Brutos'
-			        },
-			        subtitle: {
-			            text: 'Movimientos'
+			            text: titulo
 			        },
 			        xAxis: {
-			            categories: descripcion,
+			            categories: arrayDescripcion,
 			            title: {
-			                text: null
-			            }
+			                text: tituloX
+			            },
+			            crosshair: true
 			        },
 			        yAxis: {
 			            min: 0,
 			            title: {
-			                text: 'Valor (COP)',
-			                align: 'high'
-			            },
-			            labels: {
-			                overflow: 'justify'
+			                text: null
 			            }
 			        },
 			        tooltip: {
-			            valueSuffix: ' millions'
+			            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+			            footerFormat: '</table>',
+			            shared: true,
+			            useHTML: true
 			        },
 			        plotOptions: {
-			            bar: {
-			                dataLabels: {
-			                    enabled: true
-			                }
+			            column: {
+			                pointPadding: 0.2,
+			                borderWidth: 0
 			            }
 			        },
-			        legend: {
-			            layout: 'vertical',
-			            align: 'right',
-			            verticalAlign: 'top',
-			            x: -40,
-			            y: 80,
-			            floating: true,
-			            borderWidth: 1,
-			            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-			            shadow: true
+			        series: [{
+			            name: 'Costo($)',
+			            data: arrayValor
 			        },
-			        credits: {
-			            enabled: false
-			        },
-			        /**series: [{
-			            name: 'Year 1800',
-			            data: [107, 31, 635, 203, 2]
-			        }, {
-			            name: 'Year 1900',
-			            data: [133, 156, 947, 408, 6]
-			        }, {
-			            name: 'Year 2012',
-			            data: [1052, 954, 4250, 740, 38]
-			        }]**/
-			        series:[{name: tipo,
-			        		data: valor}]
-			    });
-						
+			        {
+			        	name: nombreSerie+" "+eval(arrayValor.join('+')),
+			        	data: null
+			        }]
+			    });					
 			})//cierra el loaded
 			//################################################################################################
 		}//cierra la funcion
@@ -131,8 +122,8 @@ rentgular.controller('dashboardCtrl', ['servicioAuth', '$scope', '$route', '$fir
 		// Llamamos a las dos funciones que hemos declarado
 		//get_ultimos_ingresos()
 		//get_ultimos_egresos()
-		graficarIngresos()
-
+		graficarCausales(ingresosRef, losIngresos, 'Ingresos Brutos', 'Valor (COP)', 'Total Ingresos Brutos:', descripcion, tipo, valor)
+		//graficarCausales(comprasRef, laCompras, 'Compras y Consumos', 'Valor (COP)', 'Total Compras:', descripcionCompras, tipoCompras, valorCompras)
 
 		//##############################################################################################################################
 		}
