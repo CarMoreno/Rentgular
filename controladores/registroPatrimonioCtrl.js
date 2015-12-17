@@ -100,7 +100,7 @@ rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', 'servicioNoti', 
 					$scope.totalPatrimonio += ingreso.valor //Se obtiene el valor del patrimonio
 					// este if es para saber si el patrimonio es algun tipo de transaccion bancaria
 					// para hacer un a notificacion personalizada si esto llega a pasar.
-					if(ingreso.tipo == "Cuenta ahorros" || ingreso.tipo == "Cuenta Corriente" || ingreso.tipo == "Cuenta cooperativas"){
+					if(ingreso.tipo == "Cuenta ahorros" || ingreso.tipo == "Cuenta corriente" || ingreso.tipo == "Cuenta cooperativas"){
 						$scope.totalTransacciones +=ingreso.valor
 						$scope.noti.debe_declarar($scope.totalTransacciones, notify, "TRANSACCIONES")
 					}
