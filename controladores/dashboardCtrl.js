@@ -1,8 +1,9 @@
 var rentgular = angular.module('rentgularApp')
-rentgular.controller('dashboardCtrl', ['servicioAuth', '$scope', '$route', '$firebaseArray',
-	function(servicioAuth, $scope, $route, $firebaseArray) {
+rentgular.controller('dashboardCtrl', ['servicioAuth', 'servicioNoti', '$scope', '$route', '$firebaseArray',
+	function(servicioAuth, servicioNoti, $scope, $route, $firebaseArray) {
 		// Las siguientes variables deben de ir en todos los controladores.
-		$scope.auth = servicioAuth // Objeto que retorna el servicio
+		$scope.auth = servicioAuth // Objeto que retorna el servicio de autenticacion
+		$scope.noti = servicioNoti // Objeto que retorna el servicio de notificacioes
 		$scope.ruta = $route // Ruta actual
 		$scope.cambio = {}
 		$scope.ref = servicioAuth.ref() // objeto $firebaseAuth
@@ -41,8 +42,9 @@ rentgular.controller('dashboardCtrl', ['servicioAuth', '$scope', '$route', '$fir
 			$scope.arrayUltimosPagosServicios = $firebaseArray(query_servicios_publicos)
 			//console.log($scope.arrayUltimosPagosServicios)
 		}
-		// Llamamos a las dos funciones que hemos declarado
+		// Llamamos a las funciones que controlan los ultimos movimientos
 		get_ultimos_ingresos()
 		get_ultimos_egresos()
+
 	}
 ])

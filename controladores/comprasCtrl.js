@@ -1,8 +1,9 @@
 var rentgular = angular.module('rentgularApp')
-rentgular.controller('comprasCtrl', ['servicioAuth', '$scope', '$route', '$firebaseArray',
-	function(servicioAuth, $scope, $route, $firebaseArray) {
+rentgular.controller('comprasCtrl', ['servicioAuth', 'servicioNoti', '$scope', '$route', '$firebaseArray','notify',
+	function(servicioAuth, servicioNoti, $scope, $route, $firebaseArray, notify) {
 		// Las siguientes variables deben de ir en todos los controladores.
 		$scope.auth = servicioAuth // Objeto que retorna el servicio
+		$scope.noti = servicioNoti
 		$scope.ruta = $route // Ruta actual
 		$scope.cambio = {}
 		$scope.ref = servicioAuth.ref() // objeto $firebaseAuth
@@ -55,6 +56,7 @@ rentgular.controller('comprasCtrl', ['servicioAuth', '$scope', '$route', '$fireb
 				angular.forEach($scope.misCompras, function(compra) {
 					$scope.totalCompras += compra.valor
 				})
+				$scope.noti.debe_declarar($scope.totalCompras, notify, "COMPRAS")
 			})
 
 	}

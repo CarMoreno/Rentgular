@@ -1,13 +1,15 @@
 var rentgular = angular.module('rentgularApp')
-rentgular.controller('ingresosCtrl', ['servicioAuth', '$scope', '$route', '$firebaseArray', 
-	function(servicioAuth, $scope, $route, $firebaseArray) {
+rentgular.controller('ingresosCtrl', ['servicioAuth','servicioNoti', '$scope', '$route', '$firebaseArray','notify', 
+	function(servicioAuth, servicioNoti, $scope, $route, $firebaseArray, notify) {
 		// Las siguientes variables deben de ir en todos los controladores.
 		$scope.auth = servicioAuth // Objeto que retorna el servicio
+		$scope.noti = servicioNoti
 		$scope.ruta = $route // Ruta actual
 		$scope.cambio = {}
 		$scope.ref = servicioAuth.ref() // objeto $firebaseAuth
 		$scope.datosUserLog = servicioAuth.ref().$getAuth() //datos del usuario logueado
 		// ---------------------------------------------------------------------------
+		//notify('Your notification message');
 		var ingresosRef = new Firebase('https://rentas.firebaseIO.com/ingresos')
 		var ingresos = {}
 		$scope.miSalario = {}
@@ -17,8 +19,11 @@ rentgular.controller('ingresosCtrl', ['servicioAuth', '$scope', '$route', '$fire
 		$scope.misArriendos = {}
 		$scope.arrayIngresos = $firebaseArray(ingresosRef)
 		$scope.totalIngresos = 0
-
-
+		/**
+		 * [pago Permite almacenar la informacion referente a ingresos en el nodo espe]
+		 * @param  {[type]} concepto [los ingresos pueden ser de darios aspectos: salarios, pensiones,...]
+		 * @return {[type]}          [description]
+		 */
 		$scope.pago = function(concepto) {
 			if(concepto == 'salarios'){
 				ingresos = $scope.miSalario
@@ -39,7 +44,6 @@ rentgular.controller('ingresosCtrl', ['servicioAuth', '$scope', '$route', '$fire
 				por_concepto_de : concepto
 			})
 		}
-
 
 		/**
 		 * [remover Elimina un registro seleccionado]
@@ -70,6 +74,8 @@ rentgular.controller('ingresosCtrl', ['servicioAuth', '$scope', '$route', '$fire
 				angular.forEach($scope.misIngresos, function(ingreso) {
 					$scope.totalIngresos += ingreso.valor	
 				})
+				$scope.noti.debe_declarar($scope.totalIngresos, notify, "INGRESOS")
+				// console.log("Total ingresos",$scope.misIngresos)
 			})
 	}
 ])

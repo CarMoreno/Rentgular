@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="img/icono.png">
+    <!--Estilos notificaciones-->
+    <link rel="stylesheet" href="plugins/angular/angular-notify.css">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <!-- Font Awesome -->
@@ -40,10 +42,12 @@
 	<div ng-view></div>
 
 	<script src="plugins/lib/jQuery-2.1.4.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-	<script src="plugins/angular/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script src="plugins/angular/angular-route.min.js"></script>
   <script src="plugins/angular/angular-sanitize.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="plugins/angular/angular-notify.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
 	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
 	<script src="plugins/angular/angularfire.min.js"></script>
 	<script src="dist/js/app.min.js"></script><!--De admin LTE-->
@@ -51,6 +55,7 @@
   <script src="app.js"></script><!--Del modulo global-->
   <script src="rutas.js"></script>
   <script src="factorias/AuthFactoria.js"></script>
+  <script src="factorias/NotiFactoria.js"></script>
   <!--Aca debemos de incluir los controlaores que vayamos creando-->
   <script src="controladores/loginCtrl.js"></script>
   <script src="controladores/registroCtrl.js"></script>
@@ -59,11 +64,18 @@
   <script src="controladores/egresosCtrl.js"></script>
   <script src="controladores/pagoSalarioCtrl.js"></script>
   <script src="controladores/comprasCtrl.js"></script>
-  <script src="controladores/serviciosPublicosCtrl.js"></script>
-  <script src="controladores/serviciosGeneralesCtrl.js"></script>
-
+  <script src="controladores/serviciosPublicosCtrl.js"></script>s
   <script src="controladores/patrimonioCtrl.js"></script>
   <script src="controladores/registroPatrimonioCtrl.js"></script>
-	<script src="plugins/js/forms.js"></script><!--OJO-->
+  <!--Pollyfil input date para firefox-->
+  <!-- cdn for modernizr, if you haven't included it already -->
+  <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+  <!-- polyfiller file to detect and load polyfills -->
+  <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+  <script>
+    webshims.setOptions('waitReady', false);
+    webshims.setOptions('forms-ext', {types: 'date'});
+    webshims.polyfill('forms forms-ext');
+  </script>
 </body>
 </html>

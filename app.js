@@ -1,6 +1,13 @@
-// Aca registramos los modulos de terceros u otros modulos con los que trabaja el principal.
+/** 
+*Los modulos que tenemos son:
+*- cgNotify : Módulo para el manejo de notificaciones: https://github.com/cgross/angular-notify.
+* 			Se inyecta notify en el controlador.
+*- firebase : Módulo para poder usar la libreria de firebase, sus metodos y objetos
+* 			se inyecta $firebaseArray o $firebaseObject o $firebaseSimpleLogin, entre otros
+*- ngRoute : Módulo para manejar las rutas de la aplicacion, se inyecta $route
+**/
 angular.module('rentgularApp', [
-		'firebase', 
-		'ngRoute',
-		'forms'
+	'cgNotify',
+	'firebase', 
+	'ngRoute'
 ])

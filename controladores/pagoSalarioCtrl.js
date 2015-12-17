@@ -1,8 +1,9 @@
 var rentgular = angular.module('rentgularApp')
-rentgular.controller('pagoSalarioCtrl', ['servicioAuth','$scope', '$route', '$firebaseArray',
-	function(servicioAuth, $scope, $route, $firebaseArray) {
+rentgular.controller('pagoSalarioCtrl', ['servicioAuth', 'servicioNoti', '$scope', '$route', '$firebaseArray',
+	function(servicioAuth, servicioNoti, $scope, $route, $firebaseArray) {
 		// Las siguientes variables deben ir en todos los controladores.
 		$scope.auth = servicioAuth // Objeto que retorna el servicio
+		$scope.noti = servicioNoti
 		$scope.ruta = $route // Ruta actual
 		$scope.cambio = {} // objeto donde se guarda lo de cambio de contraseña
 		$scope.ref = servicioAuth.ref() // objeto $firebaseAuth

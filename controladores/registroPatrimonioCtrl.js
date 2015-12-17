@@ -1,10 +1,10 @@
 var rentgular = angular.module('rentgularApp')
 
 //3. Controlador que se encarga del registro de patrimonio de un usuario
-rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', '$scope', '$route', '$firebaseArray',
-	function(servicioAuth, $scope, $route, $firebaseArray) {
-
+rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', 'servicioNoti', '$scope', '$route', '$firebaseArray','notify',
+	function(servicioAuth, servicioNoti, $scope, $route, $firebaseArray, notify) {
 		$scope.auth = servicioAuth // Objeto que retorna el servicio
+		$scope.noti = servicioNoti
 		$scope.ruta = $route // Ruta actual
 		$scope.cambio = {}
 		$scope.ref = servicioAuth.ref() // objeto $firebaseAuth
@@ -17,15 +17,17 @@ rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', '$scope', '$rout
 		var patrimonioDatos = {}
 		var fechaIngresoRegistro =  new Date()
 		$scope.totalPatrimonio = 0
+		$scope.totalTransacciones = 0
 		$scope.miPatrimonio = {}
 		$scope.misVehiculos = {}
 		$scope.misMuebles = {}
 		$scope.misCobros = {}
 		$scope.miMaquinaria = {}
+		$scope.misAcciones = {}
+		// Ahorros, corrientes y cooperativas son cuentas bancarias, por lo tanto son transacciones
 		$scope.misAhorros = {}
 		$scope.misCooperativas = {}
 		$scope.miCorriente = {}
-		$scope.misAcciones = {}
 		$scope.datos = {}
 		//________________________ ______________________________________________________
 
@@ -52,6 +54,7 @@ rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', '$scope', '$rout
 				patrimonioDatos = $scope.datos
 			}
 
+			
 			//Se almacena la informacion en la URI especificada en la variable patrimonioRef
 			$scope.arrayPatrimonio.$add({
 				tipo : tipo,
@@ -70,11 +73,9 @@ rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', '$scope', '$rout
 		function cargarPatrimonio()
 		{
 			//Se muestra todo el patrimonio que tienes hasta el momento
-			var query = patrimonioRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid)//Se busca en los nodos el atributo propietario que sea igual
-																								 //a la identificacion del usuario logueado
+			var query = patrimonioRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid)//Se busca en los nodos el atributo propietario que sea igual																					 //a la identificacion del usuario logueado
 			$scope.miPatrimonio = $firebaseArray(query)
 		}
-
 		cargarPatrimonio()
 
 
@@ -90,15 +91,21 @@ rentgular.controller('registroPatrimonioCtrl', ['servicioAuth', '$scope', '$rout
 		}
 
 
-		// Esto nos permite que el array solo contenga los datos que hemos insertado y no
-		// este lleno con datos del servidor, por defecto Firebase llena las referencias a
-		// $firebaseArray con metodos y otras variables, con $loaded() solo tramemos los datos
-		// que esten guardados en la base de datos NO MAS.
+		// Con loaded esperemos a que el array se llene, solo cuando los datos esten en el
+		// array entonces hacemos el foreach, de lo contrario el total siempre sera cero
+		// pues no haran elementos en el array
 		$scope.miPatrimonio.$loaded()
 			.then(function() {
 				angular.forEach($scope.miPatrimonio, function(ingreso) {
-					$scope.totalPatrimonio += ingreso.valor //Se obtiene el valor del patrimonio	
+					$scope.totalPatrimonio += ingreso.valor //Se obtiene el valor del patrimonio
+					// este if es para saber si el patrimonio es algun tipo de transaccion bancaria
+					if(ingreso.tipo == "Cuenta ahorros" || ingreso.tipo == "Cuenta Corriente" || ingreso.tipo == "Cuenta cooperativas"){
+						$scope.totalTransacciones +=ingreso.valor
+					}
 				})
+				//console.log($scope.totalPatrimonio)
+				$scope.noti.debe_declarar($scope.totalPatrimonio, notify, "PATRIMONIO")
+				$scope.noti.debe_declarar($scope.totalTransacciones, notify, "TRANSACCIONES")
 			})
 	}
 ])
