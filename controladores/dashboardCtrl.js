@@ -23,7 +23,7 @@ rentgular.controller('dashboardCtrl', ['servicioAuth', 'servicioNoti', '$scope',
 		//Setea el array de ingresos con los ultimos dos ingresos del usuario logueado
 		// actualemnte.
 		function get_ultimos_ingresos() {
-			var query = ingresosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid).limitToLast(2)
+			var query = ingresosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(2)
 			$scope.arrayUltimosIngresos = $firebaseArray(query)	
 		}
 
@@ -33,9 +33,9 @@ rentgular.controller('dashboardCtrl', ['servicioAuth', 'servicioNoti', '$scope',
 		// -Array de pago de salarios
 		function get_ultimos_egresos() {
 			//Realizamos las consultas
-			var query_compras = comprasRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid).limitToLast(1)
-			var query_pago_salarios = pagosSalariosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid).limitToLast(1)
-			var query_servicios_publicos = serviciosPublicosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid).limitToLast(1)
+			var query_compras = comprasRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(1)
+			var query_pago_salarios = pagosSalariosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(1)
+			var query_servicios_publicos = serviciosPublicosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(1)
 			
 			$scope.arrayUltimasCompras = $firebaseArray(query_compras)
 			$scope.arrayUltimosPagos = $firebaseArray(query_pago_salarios)

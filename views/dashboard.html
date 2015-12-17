@@ -37,7 +37,7 @@
                             <td class="text-right"><div >Ingresos</div></td>
                           </tr>
                           <tr ng-repeat ="movimiento in arrayUltimasCompras">
-                            <td><div> {{ movimiento.articulo }} </div></td>
+                            <td><div> {{ movimiento.descripcion }} </div></td>
                             <td class="text-right"><div> {{ movimiento.valor }} </div></td>
                             <td class="text-right"><div >Egresos</div></td>
                           </tr>
@@ -46,9 +46,9 @@
                             <td class="text-right"><div> {{ movimiento.valor }} </div></td>
                             <td class="text-right"><div >Egresos</div></td>
                           </tr>
-                          <tr ng-repeat = "m in arrayUltimosPagosServicios">
-                            <td><div> {{ m.concepto }} </div></td>
-                            <td class="text-right"><div>{{ m.valor }} </div></td>
+                          <tr ng-repeat = "movimiento in arrayUltimosPagosServicios">
+                            <td><div> {{ movimiento.concepto }} </div></td>
+                            <td class="text-right"><div>{{ movimiento.valor }} </div></td>
                             <td class="text-right"><div >Egresos</div></td>
                           </tr>
                       </tbody>
