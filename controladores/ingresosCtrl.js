@@ -38,10 +38,10 @@ rentgular.controller('ingresosCtrl', ['servicioAuth','servicioNoti', '$scope', '
 			}
 			//Llenamos el array de ingresos
 			$scope.arrayIngresos.$add({
-				id_usuario: $scope.ref.$getAuth().uid,
+				propietario: $scope.ref.$getAuth().uid,
 				descripcion: ingresos.descripcion,
 				valor: ingresos.valor,
-				por_concepto_de : concepto
+				tipo : concepto
 			})
 		}
 
@@ -59,7 +59,7 @@ rentgular.controller('ingresosCtrl', ['servicioAuth','servicioNoti', '$scope', '
 
 		function cargar_datos () {
 			//Se muestra todo el patrimonio que tienes hasta el momento
-			var query = ingresosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)
+			var query = ingresosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid)
 			$scope.misIngresos = $firebaseArray(query)
 		}
 		cargar_datos()

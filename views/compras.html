@@ -24,7 +24,7 @@
                             <table class="data-table col-xs-11 col-md-offset-1 data-table-container">
                                 <thead>
                                     <tr>
-                                        <th>Servicios</th>
+                                        <th>Compras</th>
                                         <th class="text-right">Saldo</th>
                                         <th colspan="2">&nbsp;</th>
                                     </tr>
@@ -33,7 +33,7 @@
                                  <!--  Lo que debe crear el JS -->
                                     
                                     <tr ng-repeat="compra in misCompras">
-                                      <td><div> {{ compra.articulo }} </div></td>
+                                      <td><div> {{ compra.descripcion }} </div></td>
                                       <td class="text-right"><div> {{ compra.valor }} </div></td>
                                       <td class="text-right">
                                       <div ><span ng-click="remover(compra)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>

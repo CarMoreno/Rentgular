@@ -14,7 +14,7 @@
         <!-- Main content -->
         <section class="content">
           <!-- CONTENIDO DE LA PAGINA-->
-          <div ng-controller="formController" class="row"  style="padding:10px" > 
+          <div class="row"  style="padding:10px" > 
             <div class="col-lg-12">
               <div class="panel panel-default">
 
@@ -37,7 +37,7 @@
                                <!--  Lo que debe crear el JS -->
                                   
                                   <tr ng-repeat="servicio in misServicios">
-                                    <td><div> {{ servicio.concepto }} </div></td>
+                                    <td><div> {{ servicio.descripcion }} </div></td>
                                     <td class="text-right"><div> {{ servicio.valor }} </div></td>
                                     <td class="text-right">
                                     <div ><span ng-click="remover(servicio)" class="action-data-table action-remove"><i class="glyphicon glyphicon-trash"></i>Borrar</span></div>

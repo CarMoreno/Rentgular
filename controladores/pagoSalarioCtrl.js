@@ -19,9 +19,10 @@ rentgular.controller('pagoSalarioCtrl', ['servicioAuth', 'servicioNoti', '$scope
 		//esta es para Anadir datos de pago de salarios a la BD
 		$scope.pago = function() {
 			$scope.arrayEgresos.$add({
-				id_usuario: $scope.ref.$getAuth().uid,
+				propietario: $scope.ref.$getAuth().uid,
 				valor: $scope.pagoDatos.valor,
-				descripcion: $scope.pagoDatos.descripcion
+				descripcion: $scope.pagoDatos.descripcion,
+				tipo: 'Pago salarios'
 			})		
 		}
 
@@ -41,7 +42,7 @@ rentgular.controller('pagoSalarioCtrl', ['servicioAuth', 'servicioNoti', '$scope
 		function cargar_datos()
 		{
 			//Se muestran los salarios
-			var query = pagosSalariosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)
+			var query = pagosSalariosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid)
 			$scope.miSalario = $firebaseArray(query)
 		}
 

@@ -17,9 +17,10 @@ rentgular.controller('serviciosPublicosCtrl', ['servicioAuth', 'servicioNoti', '
 		//esta es para Anadir datos de pago de servicios a la BD
 		$scope.pago = function() {
 			$scope.arrayServicosPublicos.$add({
-				id_usuario: $scope.ref.$getAuth().uid,
+				propietario: $scope.ref.$getAuth().uid,
 				valor: $scope.pagoDatos.valor,
-				concepto: $scope.pagoDatos.concepto
+				descripcion: $scope.pagoDatos.concepto,
+				tipo: 'Servicios publicos'
 			})	
 		}
 
@@ -39,7 +40,7 @@ rentgular.controller('serviciosPublicosCtrl', ['servicioAuth', 'servicioNoti', '
 		function cargar_datos()
 		{
 			//Se muestran los servicios publicos
-			var query = serviciosRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)
+			var query = serviciosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid)
 			$scope.misServicios = $firebaseArray(query)
 		}
 

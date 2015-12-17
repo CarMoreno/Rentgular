@@ -18,9 +18,10 @@ rentgular.controller('comprasCtrl', ['servicioAuth', 'servicioNoti', '$scope', '
 		//esta es para Anadir datos de pago de salarios a la BD
 		$scope.pago = function() {
 			$scope.arrayCompras.$add({
-				id_usuario: $scope.ref.$getAuth().uid,
+				propietario: $scope.ref.$getAuth().uid,
 				valor: $scope.pagoDatos.valor,
-				articulo: $scope.pagoDatos.articulo
+				descripcion: $scope.pagoDatos.articulo,
+				tipo: 'Compras'
 			})					
 		}
 
@@ -40,7 +41,7 @@ rentgular.controller('comprasCtrl', ['servicioAuth', 'servicioNoti', '$scope', '
 		function cargar_datos()
 		{
 			//Se muestran todas las compras que tienes hasta el momento
-			var query = comprasRef.orderByChild("id_usuario").equalTo($scope.datosUserLog.uid)
+			var query = comprasRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid)
 			$scope.misCompras = $firebaseArray(query)
 		}
 
