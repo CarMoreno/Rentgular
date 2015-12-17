@@ -10,6 +10,7 @@ rentgular.controller('ingresosCtrl', ['servicioAuth', '$scope', '$route', '$fire
 		// ---------------------------------------------------------------------------
 		var ingresosRef = new Firebase('https://rentas.firebaseIO.com/ingresos')
 		var ingresos = {}
+		var fecha =  new Date()
 		$scope.miSalario = {}
 		$scope.misCesantias = {}
 		$scope.misPensiones ={}
@@ -36,8 +37,10 @@ rentgular.controller('ingresosCtrl', ['servicioAuth', '$scope', '$route', '$fire
 				id_usuario: $scope.ref.$getAuth().uid,
 				descripcion: ingresos.descripcion,
 				valor: ingresos.valor,
-				por_concepto_de : concepto
+				por_concepto_de : concepto,
+				fecha_registro : fecha.toString()
 			})
+			console.log(fecha)
 		}
 
 

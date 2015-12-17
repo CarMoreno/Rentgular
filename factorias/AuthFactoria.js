@@ -22,7 +22,7 @@ rentgular.factory('servicioAuth', ['$firebaseAuth',
 			},
 			change_password: function(e, firebaseRef, tuemail, passVieja, passNueva) {
 				e.preventDefault()//Para que la pagina no recargue cuando ejecutemos la accion
-				console.log('Hola')
+				//console.log('Hola')
 				var mensaje = null
 				firebaseRef.$changePassword({
 					email: tuemail,
