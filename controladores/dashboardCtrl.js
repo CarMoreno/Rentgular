@@ -14,17 +14,19 @@ rentgular.controller('dashboardCtrl', ['servicioAuth', 'servicioNoti', '$scope',
 		var comprasRef = new Firebase('http://rentas.firebaseIO.com/egresos/compras')
 		var pagosSalariosRef = new Firebase('http://rentas.firebaseIO.com/egresos/pagos_salarios')
 		var serviciosPublicosRef = new Firebase('http://rentas.firebaseIO.com/egresos/servicios_publicos')
+		var patrimonioRef = new Firebase('http://rentas.firebaseIO.com/patrimonio')
 		//Declaro los arrays para cada movimiento (ingresos o egresos: compras, pagos de salarios, servicios publicos)
 		$scope.arrayUltimasCompras = $firebaseArray(comprasRef)
 		$scope.arrayUltimosPagos = $firebaseArray(pagosSalariosRef)
 		$scope.arrayUltimosPagosServicios = $firebaseArray(serviciosPublicosRef)
 		$scope.arrayUltimosIngresos = $firebaseArray(ingresosRef)
-		
+		$scope.arrayUltimosPatrimonios = $firebaseArray(patrimonioRef)
 		//Setea el array de ingresos con los ultimos dos ingresos del usuario logueado
 		// actualemnte.
 		function get_ultimos_ingresos() {
 			var query = ingresosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(2)
-			$scope.arrayUltimosIngresos = $firebaseArray(query)	
+			$scope.arrayUltimosIngresos = $firebaseArray(query)
+			
 		}
 
 		// Setea tres arrays, los correspondientes a los egresos:
@@ -36,15 +38,19 @@ rentgular.controller('dashboardCtrl', ['servicioAuth', 'servicioNoti', '$scope',
 			var query_compras = comprasRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(1)
 			var query_pago_salarios = pagosSalariosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(1)
 			var query_servicios_publicos = serviciosPublicosRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(1)
-			
+
 			$scope.arrayUltimasCompras = $firebaseArray(query_compras)
 			$scope.arrayUltimosPagos = $firebaseArray(query_pago_salarios)
 			$scope.arrayUltimosPagosServicios = $firebaseArray(query_servicios_publicos)
 			//console.log($scope.arrayUltimosPagosServicios)
 		}
+		function get_ultimos_patrimonios () {
+			var query = patrimonioRef.orderByChild("propietario").equalTo($scope.datosUserLog.uid).limitToLast(2)
+			$scope.arrayUltimosPatrimonios = $firebaseArray(query)	
+		}
 		// Llamamos a las funciones que controlan los ultimos movimientos
 		get_ultimos_ingresos()
 		get_ultimos_egresos()
-
+		get_ultimos_patrimonios()
 	}
 ])

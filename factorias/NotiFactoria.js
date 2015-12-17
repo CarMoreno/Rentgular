@@ -1,23 +1,20 @@
 
 /**  ==========================Condiciones para declarar Renta=========================
-1. Las personas naturales con ingresos superiores a $3265000 mensuales en 2014 deben declarar
-renta en 2015.
-2. Si tuviste patrimonio bruto de más de $123,68 millones de pesos en 2014 debes declarar renta.
-3. Si tuviste ingresos brutos anuales por más de $38,48 millones en el años 2014,  
-   presentas declaración.
-4. Si registraste consumos con tarjeta débito o crédito por más de $76,9 millones o consignaciones
-   bancarias por más de $123,68 millones, en 2014 también declaras este año.
-
-Cualquiera de las cuatros condiciones anteriores es suficiente para presentar la declaración.
+	● Ingresos brutos mayor a $37’577.000
+	● Patrimonio bruto mayor a $120’785.000 pesos.
+	● Compras y consumos, sin importar el medio de pago y con tarjeta de crédito, superiores
+	a $75’155.000 pesos.
+	● Consignaciones bancarias, depósitos e inversiones financieras que superen los
+	$120’785.000 pesos.
 **/
 var rentgular = angular.module('rentgularApp')
 rentgular.factory('servicioNoti', [
 	function() {
 		//Topes que se deben de superar para declarar renta
-		var TOPE_INGRESOS = 38479000 
-		var TOPE_COMPRAS = 76958000
-		var TOPE_PATRIMONIO = 123682500
-		var TOPE_TRANSACCIONES = 76958000
+		var TOPE_INGRESOS = 37577000 
+		var TOPE_COMPRAS = 75155000
+		var TOPE_PATRIMONIO = 120785000
+		var TOPE_TRANSACCIONES = 75155000
 		// monto a pagar si los topes son excedidos
 		var monto_pagar = 0
 		var obj = {

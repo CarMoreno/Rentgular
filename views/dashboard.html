@@ -51,6 +51,11 @@
                             <td class="text-right"><div>{{ movimiento.valor }} </div></td>
                             <td class="text-right"><div >Egresos</div></td>
                           </tr>
+                          <tr ng-repeat = "movimiento in arrayUltimosPatrimonios">
+                            <td><div> {{ movimiento.descripcion }} </div></td>
+                            <td class="text-right"><div>{{ movimiento.valor }} </div></td>
+                            <td class="text-right"><div >Patrimonio</div></td>
+                          </tr>
                       </tbody>
                       <!-- <tfoot>
                           <tr>
